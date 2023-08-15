@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>birthday scratch card</title>
+    <style>
+        .sidebar {
+            width: 10%; /* 盒子宽度 */
+            height: 35%; /* 盒子高度 */
+            padding: 20px; /* 盒子内边距 */
+            background-color: lightgray;
+            opacity: 0.9;
+            float: left; /* 左浮动 */
+            border: 5px solid;
+            border-image: linear-gradient(to right, #B8860B, #FFD700);
+            border-image-slice: 1;
+        }
+        .list-item-main{
+            padding: 5px 0; /* 列表项上下内边距 */
+            color: #B8860B;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .list-item {
+            padding: 5px 0; /* 列表项上下内边距 */
+            color: #B8860B;
+        }
+
+        #screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /*background: url('https://pic.ntimg.cn/file/20201201/25556919_104441870000_2.jpg') no-repeat center center fixed;*/
+            background: url('https://ts1.cn.mm.bing.net/th/id/R-C.2eb0549c9ee692f1f06b6dbad4519b10?rik=2y%2bTJyk2DgR4lA&riu=http%3a%2f%2ftu.yiwu.com.cn%2fgg%2fpic%2f6.jpg&ehk=ETksrwB5xXWxIyNvJ%2fUCV61X6OtXKp5uHXwRLECJ59s%3d&risl=&pid=ImgRaw&r=0') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        #warp {
+            width: 55%;
+            height: 20%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 5px;
+            margin: 25% auto;
+        }
+
+        .grid-item {
+            border: 5px solid;
+            border-image: linear-gradient(to right, #B8860B, #FFD700);
+            border-image-slice: 1;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        #title {
+            text-align: center;
+            background: linear-gradient(to right, #B8860B, #f30303);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+    </style>
+</head>
+<body>
+<div id="screen">
+    <h1 id="title">董二狗的生日刮刮乐</h1>
+    <div class="sidebar">
+        <ul class="list-item-main">本期奖品如下</ul>
+        <ul>
+            <li class="list-item">瓜子</li>
+            <li class="list-item">核桃</li>
+            <li class="list-item">土豆</li>
+            <li class="list-item">百灵鸟</li>
+            <li class="list-item">杏仁</li>
+        </ul>
+    </div>
+    <div id="warp">
+        <canvas class="grid-item" id="can1"></canvas>
+        <canvas class="grid-item" id="can2"></canvas>
+        <canvas class="grid-item" id="can3"></canvas>
+        <canvas class="grid-item" id="can4"></canvas>
+        <canvas class="grid-item" id="can5"></canvas>
+        <canvas class="grid-item" id="can6"></canvas>
+        <canvas class="grid-item" id="can7"></canvas>
+        <canvas class="grid-item" id="can8"></canvas>
+        <canvas class="grid-item" id="can9"></canvas>
+        <canvas class="grid-item" id="can10"></canvas>
+    </div>
+</div>
+
+<script type="text/javascript">
+    items_len = 10
+    //设置中奖信息
+    var data = [
+        {name: '董小狗', color: 'rgba(0, 0, 0, 1)'},
+        {name: '董大狗', color: 'rgba(0, 0, 0, .9)'},
+        {name: '董小鸡', color: 'rgba(0, 255, 0, 1)'},
+        {name: '董小猪', color: 'rgba(255, 0, 0, 1)'},
+        {name: '董大猪', color: 'hotpink'},
+        {name: '董大鸭', color: 'darkgreen'}
+    ];
+
+    for (var i = 1; i <= items_len + 1; i++) {
+        var str_ = '#can' + i
+        var can = document.querySelector(str_)
+        get_information(can, data)
+    }
+
+    function get_information(can, data) {
+        can.width = 150;
+        can.height = 75;
+        var area = can.width * can.height;
+        console.log(area);
+
+        //联系上下文
+        var cv = can.getContext("2d");
+
+
+        //获得index值
+        var index = Math.floor(Math.random() * data.length);
+        //获得对象
+        var dataIndex = data[index];
+        //设置文字
+        cv.font = "800 15px 微软雅黑";
+        cv.textBaseline = 'middle';
+        cv.textAlign = "center";
+        cv.fillStyle = dataIndex.color;
+        cv.fillText(dataIndex.name, can.width / 2, can.height / 2);
+        //将背景转换为canvas特有的base64格式
+        var dataUrl = can.toDataURL("image/png", 1);
+        //将背景图片设置为canvas画布的背景
+        can.style.backgroundImage = "url(" + dataUrl + ")";
+        //给画布添加遮罩层
+        // cv.fillStyle = "#CCC";
+        cv.fillStyle = "#eaa80b";
+        cv.fillRect(0, 0, can.width, can.height);
+        //设置点击事件
+        var flag = false;
+        var r = 10;
+        can.addEventListener('mousedown', function () {
+            flag = true;
+            // destination-out 是让重叠部分的内容变为透明
+            cv.globalCompositeOperation = 'destination-out';
+        });
+        can.addEventListener('mouseup', function () {
+            flag = false;
+        });
+
+        can.addEventListener('mousemove', function (e) {
+            if (flag) {
+
+                var x0 = e.clientX - can.offsetLeft;
+                var y0 = e.clientY - can.offsetTop;
+
+                cv.moveTo(x0, y0);
+                cv.arc(x0, y0, r, 0, Math.PI * 2);
+                cv.fill();
+
+                var data = cv.getImageData(0, 0, can.width, can.height).data;
+
+                for (var i = 0, j = 0; i < data.length; i += 4) {
+                    if (data[i] && data[i + 1] && data[i + 2] && data[i + 3]) {
+                        j++;
+                    }
+                }
+                //当图层被擦除剩余70%时触发
+                if (j <= area * 0.3) {
+                    cv.clearRect(0, 0, can.width, can.height);
+                }
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
