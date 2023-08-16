@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <title>birthday scratch card</title>
     <style>
+        @font-face {
+            font-family: "CustomFont";
+            src: url(../static/font/handle.ttf);
+        }
+
         .sidebar {
             width: 10%; /* 盒子宽度 */
             height: 35%; /* 盒子高度 */
@@ -16,7 +21,8 @@
             border-image: linear-gradient(to right, #B8860B, #FFD700);
             border-image-slice: 1;
         }
-        .list-item-main{
+
+        .list-item-main {
             padding: 5px 0; /* 列表项上下内边距 */
             color: #B8860B;
             font-weight: bold;
@@ -36,7 +42,7 @@
             height: 100%;
             z-index: -1;
             /*background: url('https://pic.ntimg.cn/file/20201201/25556919_104441870000_2.jpg') no-repeat center center fixed;*/
-            background: url('https://ts1.cn.mm.bing.net/th/id/R-C.2eb0549c9ee692f1f06b6dbad4519b10?rik=2y%2bTJyk2DgR4lA&riu=http%3a%2f%2ftu.yiwu.com.cn%2fgg%2fpic%2f6.jpg&ehk=ETksrwB5xXWxIyNvJ%2fUCV61X6OtXKp5uHXwRLECJ59s%3d&risl=&pid=ImgRaw&r=0') no-repeat center center fixed;
+            background: url('../static/picture/kuromi.jpeg') no-repeat center center fixed;
             background-size: cover;
             opacity: 0.5;
         }
@@ -65,13 +71,15 @@
             background: linear-gradient(to right, #B8860B, #f30303);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-family: "CustomFont", sans-serif;
+            font-size: 50px;
         }
 
     </style>
 </head>
 <body>
 <div id="screen">
-    <h1 id="title">董二狗的生日刮刮乐</h1>
+    <div id="title"> 董二狗生日快乐 </div>
     <div class="sidebar">
         <ul class="list-item-main">本期奖品如下</ul>
         <ul>
@@ -108,7 +116,7 @@
         {name: '董大鸭', color: 'darkgreen'}
     ];
 
-    for (var i = 1; i <= items_len + 1; i++) {
+    for (var i = 1; i < items_len + 1; i++) {
         var str_ = '#can' + i
         var can = document.querySelector(str_)
         get_information(can, data)

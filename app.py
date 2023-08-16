@@ -5,7 +5,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/tk')
+@app.route('/birthday')
 def my_html():
     return render_template('index.html')
 
@@ -13,6 +13,7 @@ def my_html():
 @app.route('/')
 def hello_world():
     return 'hello'
+
 
 @app.route('/test')
 def test():
