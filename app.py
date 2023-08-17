@@ -11,7 +11,7 @@ def my_html():
 
 
 @app.route('/mobile')
-def my_html():
+def my_html_mobile():
     return render_template('mobile_scratch.html')
 
 
