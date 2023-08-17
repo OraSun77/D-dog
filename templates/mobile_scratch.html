@@ -3,19 +3,17 @@
 <head>
     <title>birthday scratch card mobile</title>
     <style>
-        #scratchArea {
+        #scratchContainer {
             position: relative;
             margin: 20px auto;
             width: 300px;
             height: 150px;
-            border: 2px solid #ccc;
-            background: #f1f1f1;
-            overflow: hidden;
-            border-radius: 5px;
         }
 
         #scratchImage {
-            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
         }
@@ -30,20 +28,30 @@
             font-weight: bold;
             display: none; /* 初始隐藏中奖提示 */
         }
+
+        #coverLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
     </style>
     <script>
         window.addEventListener('DOMContentLoaded', function () {
-            var scratchArea = document.getElementById('scratchArea');
-            var ctx = scratchArea.getContext('2d');
+            var scratchContainer = document.getElementById('scratchContainer');
+            var coverLayer = document.getElementById('coverLayer');
+            var ctx = coverLayer.getContext('2d');
             var image = new Image();
             var isScratching = false;
 
             var prizeText = document.getElementById('prize');
 
-            image.src = '../static/picture/kuromi.jpeg'; // 替换为实际的刮奖图片路径
+            image.src = 'path_to_your_image.jpg'; // 替换为实际的刮奖图片路径
 
             image.onload = function () {
-                ctx.drawImage(image, 0, 0, scratchArea.width, scratchArea.height);
+                ctx.drawImage(image, 0, 0, coverLayer.width, coverLayer.height);
             };
 
             function scratch(e) {
@@ -53,7 +61,7 @@
 
                 var touches = e.changedTouches;
                 for (var i = 0; i < touches.length; i++) {
-                    var rect = scratchArea.getBoundingClientRect();
+                    var rect = coverLayer.getBoundingClientRect();
                     var touchX = touches[i].clientX - rect.left;
                     var touchY = touches[i].clientY - rect.top;
                     ctx.beginPath();
@@ -62,7 +70,7 @@
                 }
 
                 // 刮开涂层后显示中奖提示
-                if (ctx.getImageData(0, 0, scratchArea.width, scratchArea.height).data.every(isTransparent)) {
+                if (ctx.getImageData(0, 0, coverLayer.width, coverLayer.height).data.every(isTransparent)) {
                     prizeText.style.display = 'block';
                 }
             }
@@ -79,14 +87,17 @@
                 isScratching = false;
             }
 
-            scratchArea.addEventListener('touchstart', startScratching);
-            scratchArea.addEventListener('touchend', stopScratching);
-            scratchArea.addEventListener('touchmove', scratch);
+            coverLayer.addEventListener('touchstart', startScratching);
+            coverLayer.addEventListener('touchend', stopScratching);
+            coverLayer.addEventListener('touchmove', scratch);
         });
     </script>
 </head>
 <body>
-    <canvas id="scratchArea" width="300" height="150"></canvas>
-    <div id="prize">中奖啦！</div>
+    <div id="scratchContainer">
+        <canvas id="coverLayer" width="300" height="150"></canvas>
+        <img id="scratchImage" src="../static/picture/kuromi.jpeg" alt="">
+        <div id="prize">中奖啦！</div>
+    </div>
 </body>
 </html>
