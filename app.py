@@ -10,6 +10,11 @@ def my_html():
     return render_template('index.html')
 
 
+@app.route('/mobile')
+def my_html():
+    return render_template('mobile_scratch.html')
+
+
 @app.route('/')
 def hello_world():
     return 'hello'
