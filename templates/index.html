@@ -79,7 +79,7 @@
 </head>
 <body>
 <div id="screen">
-    <div id="title"> 董二狗生日快乐 </div>
+    <div id="title"> 董二狗生日快乐</div>
     <div class="sidebar">
         <ul class="list-item-main">本期奖品如下</ul>
         <ul>
@@ -125,54 +125,63 @@
     function get_information(can, data) {
         can.width = 150;
         can.height = 75;
-        var area = can.width * can.height;
-        console.log(area);
 
         //联系上下文
-        var cv = can.getContext("2d");
-
+        var ctx = can.getContext("2d");
 
         //获得index值
         var index = Math.floor(Math.random() * data.length);
         //获得对象
         var dataIndex = data[index];
         //设置文字
-        cv.font = "800 15px 微软雅黑";
-        cv.textBaseline = 'middle';
-        cv.textAlign = "center";
-        cv.fillStyle = dataIndex.color;
-        cv.fillText(dataIndex.name, can.width / 2, can.height / 2);
+        ctx.font = "800 15px 微软雅黑";
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = "center";
+        ctx.fillStyle = dataIndex.color;
+        ctx.fillText(dataIndex.name, can.width / 2, can.height / 2);
         //将背景转换为canvas特有的base64格式
         var dataUrl = can.toDataURL("image/png", 1);
         //将背景图片设置为canvas画布的背景
         can.style.backgroundImage = "url(" + dataUrl + ")";
         //给画布添加遮罩层
-        // cv.fillStyle = "#CCC";
-        cv.fillStyle = "#eaa80b";
-        cv.fillRect(0, 0, can.width, can.height);
+        ctx.fillStyle = "#eaa80b";
+        ctx.fillRect(0, 0, can.width, can.height);
         //设置点击事件
-        var flag = false;
-        var r = 10;
-        can.addEventListener('mousedown', function () {
-            flag = true;
-            // destination-out 是让重叠部分的内容变为透明
-            cv.globalCompositeOperation = 'destination-out';
-        });
-        can.addEventListener('mouseup', function () {
-            flag = false;
-        });
+        var isScratching = false;
 
-        can.addEventListener('mousemove', function (e) {
-            if (flag) {
+        can.addEventListener('mousedown', startScratch);
+        can.addEventListener('touchstart', startScratch);
+        document.addEventListener('mouseup', stopScratch);
+        document.addEventListener('touchend', stopScratch);
 
-                var x0 = e.clientX - can.offsetLeft;
-                var y0 = e.clientY - can.offsetTop;
+        function startScratch(event) {
+            isScratching = true;
+            if (event.type === 'mousedown') {
+                can.addEventListener('mousemove', scratch);
+            } else if (event.type === 'touchstart') {
+                can.addEventListener('touchmove', scratch);
+            }
+            ctx.globalCompositeOperation = 'destination-out';
+        }
 
-                cv.moveTo(x0, y0);
-                cv.arc(x0, y0, r, 0, Math.PI * 2);
-                cv.fill();
+        function scratch(event) {
+            event.preventDefault();
+            if (isScratching) {
+                var r = 10
+                var x, y
+                if (event.type === 'mousemove') {
+                    x = event.clientX - can.getBoundingClientRect().left;
+                    y = event.clientY - can.getBoundingClientRect().top;
+                } else if (event.type === 'touchmove') {
+                    x = event.touches[0].clientX - can.getBoundingClientRect().left;
+                    y = event.touches[0].clientY - can.getBoundingClientRect().top;
+                }
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2, false);
+                ctx.fill();
 
-                var data = cv.getImageData(0, 0, can.width, can.height).data;
+                var data = ctx.getImageData(0, 0, can.width, can.height).data;
 
                 for (var i = 0, j = 0; i < data.length; i += 4) {
                     if (data[i] && data[i + 1] && data[i + 2] && data[i + 3]) {
@@ -180,11 +189,21 @@
                     }
                 }
                 //当图层被擦除剩余70%时触发
-                if (j <= area * 0.3) {
-                    cv.clearRect(0, 0, can.width, can.height);
+                if (j <= can.width * can.height * 0.3) {
+                    ctx.clearRect(0, 0, can.width, can.height);
                 }
             }
-        });
+        }
+
+        // 停止刮奖
+        function stopScratch(event) {
+            isScratching = false;
+            if (event.type === 'mouseup') {
+                can.removeEventListener('mousemove', scratch);
+            } else if (event.type === 'touchend') {
+                can.removeEventListener('touchmove', scratch);
+            }
+        }
     }
 
 

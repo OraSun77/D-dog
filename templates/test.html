@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>test</title>
+  <style>
+    #scratch-card {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      border: 1px solid #000;
+      overflow: hidden;
+    }
+    #scratch-card img {
+      width: 100%;
+      height: 100%;
+    }
+    #scratch-card canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="scratch-card">
+    <img src="../static/picture/kuromi.jpeg" alt="Scratch Card">
+    <canvas></canvas>
+  </div>
+
+  <script>
+    // 获取canvas和图片元素
+    var canvas = document.querySelector('canvas');
+    var img = document.querySelector('img');
+    var ctx = canvas.getContext('2d');
+
+    // 设置canvas的宽高为图片的宽高
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // 绘制灰色矩形遮罩层
+    ctx.fillStyle = '#ccc';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    var isScratching = false; // 标记是否正在刮奖
+
+    // 鼠标/手指移动时刮开遮罩层
+    function startScratch(event) {
+      isScratching = true;
+      if (event.type === 'mousedown') {
+        canvas.addEventListener('mousemove', scratch);
+      } else if (event.type === 'touchstart') {
+        canvas.addEventListener('touchmove', scratch);
+      }
+    }
+
+    function scratch(event) {
+      event.preventDefault();
+      if (isScratching) {
+        var x, y;
+        if (event.type === 'mousemove') {
+          x = event.clientX - canvas.getBoundingClientRect().left;
+          y = event.clientY - canvas.getBoundingClientRect().top;
+        } else if (event.type === 'touchmove') {
+          x = event.touches[0].clientX - canvas.getBoundingClientRect().left;
+          y = event.touches[0].clientY - canvas.getBoundingClientRect().top;
+        }
+
+        // 刮开遮罩层
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2, false);
+        ctx.fill();
+      }
+    }
+
+    // 停止刮奖
+    function stopScratch(event) {
+      isScratching = false;
+      if (event.type === 'mouseup') {
+        canvas.removeEventListener('mousemove', scratch);
+      } else if (event.type === 'touchend') {
+        canvas.removeEventListener('touchmove', scratch);
+      }
+    }
+
+    // 监听事件
+    canvas.addEventListener('mousedown', startScratch);
+    canvas.addEventListener('touchstart', startScratch);
+    document.addEventListener('mouseup', stopScratch);
+    document.addEventListener('touchend', stopScratch);
+  </script>
+</body>
+</html>
