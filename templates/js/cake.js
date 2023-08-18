@@ -1,13 +1,6 @@
-/*
- * name: index.js
- * author: Jelon
- * date: 2014-9-14
- * version: 0.0.1
- * desc: 写给xx童鞋..
- */
 (function() {
 	var timer = null,
-		txt = '亲爱的xx童鞋，生日快乐~',
+		txt = '亲爱的董二狗，生日快乐~',
 		txt_cake = $('#txtCake').text(),
 		arr_cake = txt_cake.split(''),
 		txt_tmp1 = '',
@@ -19,7 +12,7 @@
 		index3 = 0,
 		index4 = 0;
 
-	//加载底部文字
+	// 加载底部文字
 	var fib1 = function() {
 		var _arguments = arguments;
 

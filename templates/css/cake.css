@@ -1,0 +1,74 @@
+/**********************
+ * name: cake.css
+ * author: Jelon
+ * date: 2014-9-14
+ * version: 0.0.1
+ * desc: 写给xx童鞋..
+ ***********************/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 12px "microsoft yahei";
+    color: #999;
+}
+
+i {
+    font-style: normal;
+}
+
+.txt-area {
+    color: #333;
+    margin: 8px 0;
+}
+
+#txt {
+    display: block;
+    width: 160px;
+    margin: 0 auto;
+}
+
+.inside_picture {
+    opacity: 40%;
+}
+
+.cake {
+    font-family: Consolas, "Courier New", sans-serif;
+    height: 27%;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.left_picture {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 28%;
+    height: 55%;
+}
+
+.right_picture {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28%;
+    height: 55%;
+}
+
+.cake-inner {
+    display: block;
+    width: 157px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid;
+    border-image: linear-gradient(to right, #ff00c4, #fcd7fc);
+    border-image-slice: 1;
+}
+
+.cake-inner span i {
+    color: #8800ff;
+}

@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "CustomFont";
+    src: url(../../static/font/handle.ttf);
+}
+
+.sidebar {
+    width: 97%; /* 盒子宽度 */
+    height: 10%; /* 盒子高度 */
+    background-color: lightgray;
+    margin: 0;
+    padding: 0;
+    opacity: 0.9;
+    border: 5px solid;
+    border-image: linear-gradient(to right, #B8860B, #FFD700);
+    border-image-slice: 1;
+}
+
+.nothing {
+    width: 100%;
+    height: 10%;
+}
+
+.list-item-main {
+    padding: 0px 0; /* 列表项上下内边距 */
+    color: #B8860B;
+    font-weight: bold;
+    font-size: large;
+    align-items: center
+}
+
+.list-item {
+    padding: 5px 0; /* 列表项上下内边距 */
+    color: #B8860B;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.list-item::before {
+    content: "⚡ ";
+    font-weight: bold;
+}
+
+#screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*background: url('https://pic.ntimg.cn/file/20201201/25556919_104441870000_2.jpg') no-repeat center center fixed;*/
+    background: url('../../static/picture/kuromi_mobile_background.png') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+#warp {
+    width: 87%;
+    height: 21%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+    padding: 5% 5% 10% 5%;
+    border: 5px solid;
+    border-image: linear-gradient(to right, #B8860B, #FFD700);
+    border-image-slice: 1;
+}
+
+.grid-item {
+    border: 5px solid;
+    border-image: linear-gradient(to right, #B8860B, #FFD700);
+    border-image-slice: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+#title {
+    text-align: center;
+    background: linear-gradient(to right, #B8860B, #f30303);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "CustomFont", sans-serif;
+    font-size: 38px;
+}
