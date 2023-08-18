@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "CustomFont";
+    src: url(../font/handle.ttf);
+}
+
+#screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*background: url('https://pic.ntimg.cn/file/20201201/25556919_104441870000_2.jpg') no-repeat center center fixed;*/
+    background: url('../picture/kuromi_mobile_background.png') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.nothing {
+    width: 97%;
+    height: 22%;
+}
+
+#title {
+    text-align: center;
+    background: linear-gradient(to right, #B8860B, #f30303);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "CustomFont", sans-serif;
+    font-size: 38px;
+}
+
+.function_sets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 55%; /* 设置盒子高度占满整个视口 */
+}
+
+.function_sets a button {
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    border: 5px solid;
+    border-image: linear-gradient(to right, #fa06c0, #ffb300);
+    border-image-slice: 1;
+    font-family: "CustomFont", sans-serif;
+    font-size: 27px;
+    background-color: #eaa80b;
+    color: #c42a4e;
+    font-weight: bold;
+}
