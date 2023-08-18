@@ -1,0 +1,30 @@
+{
+  "information": {
+    "name": "Sun",
+    "chance": 1,
+    "awards": {
+      "加油呀": [
+        0.6,
+        "common"
+      ],
+      "1元": [
+        0.2,
+        "rare"
+      ],
+      "5元": [
+        0.15,
+        "epic"
+      ],
+      "20元": [
+        0.05,
+        "legend"
+      ]
+    }
+  },
+  "color": {
+    "common": "gray",
+    "rare": "blue",
+    "epic": "purple",
+    "legend": "orange"
+  }
+}

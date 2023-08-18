@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from utils import utils
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ def dx_present():
 
 @app.route('/mobile')
 def my_html_mobile():
-    return render_template('mobile_scratch.html')
+    json_data = utils.read_local_json('config/probability.json')
+    return render_template('mobile_scratch.html', combine_list=json_data)
 
 
 @app.route('/')

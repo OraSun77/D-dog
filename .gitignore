@@ -130,7 +130,6 @@ oss_file/
 *.rpm
 images/
 *.jar
-*.json
 nohup.out
 archive.zip
 *.pkl

@@ -1,31 +1,19 @@
 items_len = 20
-//设置中奖信息
-var data = [
-    {name: '董小狗', color: 'rgba(0, 0, 0, 1)'},
-    {name: '董大狗', color: 'rgba(0, 0, 0, .9)'},
-    {name: '董小鸡', color: 'rgba(0, 255, 0, 1)'},
-    {name: '董小猪', color: 'rgba(255, 0, 0, 1)'},
-    {name: '董大猪', color: 'hotpink'},
-    {name: '董大鸭', color: 'darkgreen'}
-];
 
 for (var i = 1; i < items_len + 1; i++) {
     var str_ = '#can' + i
     var can = document.querySelector(str_)
-    get_information(can, data)
+    get_information(can)
 }
 
-function get_information(can, data) {
+function get_information(can) {
     can.width = 50;
     can.height = 25;
 
     //联系上下文
     var ctx = can.getContext("2d");
-
-    //获得index值
-    var index = Math.floor(Math.random() * data.length);
     //获得对象
-    var dataIndex = data[index];
+    var dataIndex = read_probability();
     //设置文字
     ctx.font = "800 15px 微软雅黑";
     ctx.textBaseline = 'middle';
@@ -96,5 +84,40 @@ function get_information(can, data) {
         } else if (event.type === 'touchend') {
             can.removeEventListener('touchmove', scratch);
         }
+    }
+}
+
+function weightedRandom(arr) {
+    var totalWeight = 0;
+    for (var key in arr) {
+        totalWeight += arr[key];
+    }
+
+    var randomNum = Math.random() * totalWeight;
+    var cumulativeWeight = 0;
+
+    for (var key in arr) {
+        cumulativeWeight += arr[key];
+        if (randomNum <= cumulativeWeight) {
+            return key;
+        }
+    }
+}
+
+function read_probability() {
+    try {
+        var jsonData = filter_json;
+        var json_awards = jsonData.information.awards
+        var color_list = jsonData.color
+        var awards = {}
+        for (var i = 0; i < Object.keys(json_awards).length; i++) {
+            name = Object.keys(json_awards)[i]
+            awards[name] = json_awards[name][0]
+        }
+        var choose_one = weightedRandom(awards)
+        return {'name': choose_one, 'color': color_list[json_awards[choose_one][1]]}
+    } catch (error) {
+        console.error('Error:', error);
+        return null; // 或者返回其他默认值
     }
 }
