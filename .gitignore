@@ -110,7 +110,6 @@ venv/
 *.xls
 *.docx
 *.doc
-*.png
 *.csv
 *.zip
 *.parquet
