@@ -5,14 +5,15 @@
 
 .sidebar {
     width: 97%; /* 盒子宽度 */
-    height: 10%; /* 盒子高度 */
-    background-color: lightgray;
-    margin: 0;
-    padding: 0;
-    opacity: 0.9;
+    height: 15%; /* 盒子高度 */
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*opacity: 0.9;*/
     border: 5px solid;
     border-image: linear-gradient(to right, #B8860B, #FFD700);
-    border-image-slice: 1;
+    border-image-slice: 1 0 0 0;
+    /*background-color: #d5d5d5;*/
+    /*opacity: 0.8;*/
 }
 
 .nothing {
@@ -35,6 +36,45 @@
     font-size: 15px;
 }
 
+.scratch-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 90%;
+    height: 0%;
+}
+
+.dashed-line {
+    flex-grow: 1;
+    height: 2px;
+    border-top: 2px dashed #FFD700;
+}
+
+.center-text {
+    font-size: 9px;
+    font-weight: bold;
+    color: #B8860B;
+}
+
+.scratch {
+    width: 97%;
+    height: 55%;
+    border: 5px solid;
+    border-image: linear-gradient(to right, #B8860B, #FFD700);
+    border-image-slice: 1;
+    animation: fadeAnimation 2s forwards;
+}
+
+@keyframes fadeAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .list-item::before {
     content: "⚡ ";
     font-weight: bold;
@@ -55,15 +95,15 @@
 
 #warp {
     width: 87%;
-    height: 21%;
+    height: 33%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
-    padding: 5% 5% 10% 5%;
+    padding: 3% 5% 10% 5%;
     border: 5px solid;
     border-image: linear-gradient(to right, #B8860B, #FFD700);
-    border-image-slice: 1;
+    border-image-slice: 1 0 1 0;
 }
 
 .grid-item {
@@ -73,6 +113,35 @@
     justify-content: center;
     align-items: center;
     font-size: 24px;
+}
+
+.tips {
+    height: 20%;
+    width: 100%;
+    position: relative;
+}
+
+.tips button {
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0;
+    width: 90px;
+    height: 35px;
+    border: 5px solid;
+    border-image: linear-gradient(to right, #B8860B, #FFD700);
+    border-image-slice: 1;
+    font-size: 18px;
+    background-color: #eaa80b;
+    color: #800180;
+    font-weight: bold;
+}
+
+.left-button {
+    left: 0;
+}
+
+.right-button {
+    right: 0;
 }
 
 #title {

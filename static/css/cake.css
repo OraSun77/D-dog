@@ -31,7 +31,7 @@ i {
 }
 
 .inside_picture {
-    opacity: 40%;
+    opacity: 60%;
 }
 
 .cake {
@@ -64,11 +64,10 @@ i {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    border: 5px solid;
-    border-image: linear-gradient(to right, #ff00c4, #fcd7fc);
-    border-image-slice: 1;
+    font-weight:bold;
+    color: #e7fe01;
 }
 
 .cake-inner span i {
-    color: #8800ff;
+    color: #d800ff;
 }
