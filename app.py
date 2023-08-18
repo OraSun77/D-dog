@@ -5,7 +5,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/dx828')
+@app.route('/828')
 def dx_present():
     return render_template('index.html')
 
