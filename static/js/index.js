@@ -7,10 +7,11 @@ function showWarning2() {
 }
 
 function showPopup(chance) {
-    alert("你当前有" + chance + "枚金币！");
+    confirm("你当前有" + chance + "枚金币！");
 }
 
 window.onload = function () {
     var gif = document.getElementById("coins_gif");
     gif.addEventListener("click", showPopup.bind(null, chance));
 };
+
