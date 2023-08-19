@@ -76,7 +76,7 @@
 }
 
 .list-item::before {
-    content: "⚡ ";
+    content: "❤";
     font-weight: bold;
 }
 

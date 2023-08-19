@@ -12,6 +12,17 @@ function showPopup(chance) {
 
 window.onload = function () {
     var gif = document.getElementById("coins_gif");
+    var image = document.querySelector(".music_picture");
+    var audio = document.getElementById("audio");
     gif.addEventListener("click", showPopup.bind(null, chance));
+    image.addEventListener("click", function () {
+        if (audio.paused) {
+            audio.play(); // 播放音乐
+            image.classList.add("playing"); // 添加播放状态的样式
+        } else {
+            audio.pause(); // 暂停音乐
+            image.classList.remove("playing"); // 移除播放状态的样式
+        }
+    });
 };
 
