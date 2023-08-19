@@ -8,7 +8,9 @@ app = Flask(__name__)
 
 @app.route('/828')
 def dx_present():
-    return render_template('index.html')
+    json_data = utils.read_local_json('config/probability.json')
+    chance = json_data['information']['chance']
+    return render_template('index.html', combine_list = chance)
 
 
 @app.route('/mobile')

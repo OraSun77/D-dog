@@ -3,6 +3,11 @@
     src: url(../font/handle.ttf);
 }
 
+.inside_picture {
+    display: inline-block;
+    cursor: pointer;
+}
+
 #screen {
     position: fixed;
     top: 0;
@@ -50,4 +55,20 @@
     background-color: #eaa80b;
     color: #c42a4e;
     font-weight: bold;
+}
+
+.coins_tab {
+    width: 100%;
+    height: 17%;
+    display: flex;
+}
+
+.coins_nothing {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.coins {
+    flex-grow: 0;
+    margin-right: 6px;
 }

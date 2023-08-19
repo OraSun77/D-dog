@@ -1,0 +1,2 @@
+docker build -t testflask:1.0.0 .
+docker run -d -p 80:80 -v /D-dog:/D-dog/ --name=env --privileged=true testflask:1.0.0

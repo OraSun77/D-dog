@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .gif {
+        display: inline-block;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function showPopup() {
+        alert("弹出提示框！");
+      }
+
+      window.onload = function() {
+        var gif = document.getElementById("gif");
+        gif.addEventListener("click", showPopup);
+      };
+    </script>
+  </head>
+  <body>
+    <img id="gif" class="gif" src="../static/picture/pig.gif" alt="GIF" />
+  </body>
+</html>
