@@ -6,6 +6,9 @@
     <title>birthday scratch card</title>
     <link rel="stylesheet" href="../static/css/mobile_operate.css">
     <link rel="stylesheet" href="../static/css/cake.css">
+    <script>
+        var filter_json = {{combine_list | tojson}}
+    </script>
 </head>
 <body>
 <div id="screen">
@@ -76,15 +79,17 @@
             <canvas class="grid-item" id="can20"></canvas>
         </div>
         <div class="tips">
-            <button class="left-button" id="again_one">再来一张</button>
+            <a href="/828">
+                <button class="left-button" id="return_main">返回主页</button>
+            </a>
+            <a href="/mobile">
+                <button class="mid-button" id="again_one">再来一张</button>
+            </a>
+
             <button class="right-button" id="verify">确认领取</button>
         </div>
     </div>
 </div>
-<script>
-    var filter_json =
-    {{ combine_list|tojson }}
-</script>
 <script src="../static/js/mobile_operate.js"></script>
 <script src="../static/js/jquery.js"></script>
 <script src="../static/js/cake.js"></script>

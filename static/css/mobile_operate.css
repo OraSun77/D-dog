@@ -139,7 +139,9 @@
 .left-button {
     left: 0;
 }
-
+.mid-button {
+    left: 40%;
+}
 .right-button {
     right: 0;
 }
