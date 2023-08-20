@@ -19,6 +19,7 @@ def my_html_mobile():
     return render_template('mobile_scratch.html', combine_list=json_data)
 
 
+
 @app.route('/')
 def hello_world():
     return 'hello'

@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MP3音乐播放器</title>
+  <style>
+    #myImage {
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+    }
+
+    .rotate {
+      animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <h1>MP3音乐播放器</h1>
-  <audio controls>
-    <source src="../static/mp3/music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <img id="myImage" src="../static/picture/ygg_music.jpg" alt="Image">
+
+  <script>
+    var image = document.getElementById('myImage');
+    var isRotating = false;
+
+    image.addEventListener('click', function() {
+      if (isRotating) {
+        image.classList.remove('rotate');
+        isRotating = false;
+      } else {
+        image.classList.add('rotate');
+        isRotating = true;
+      }
+    });
+  </script>
 </body>
 </html>
