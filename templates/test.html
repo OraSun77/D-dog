@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <title>html5添加音乐</title>
-    <meta charset="utf-8">
+  <title>MP3音乐播放器</title>
 </head>
-<style type="text/css">
-    audio {
-        display: none;
-    }
-</style>
 <body>
-<audio autoplay="autoplay" loop="loop" preload="auto" controls="controls"
-       src="../static/mp3/music.mp3">
-</audio>
-
-
+  <h1>MP3音乐播放器</h1>
+  <audio controls>
+    <source src="../static/mp3/music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </body>
-
 </html>
