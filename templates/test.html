@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .gif {
-        display: inline-block;
-        cursor: pointer;
-      }
-    </style>
-    <script>
-      function showPopup() {
-        alert("弹出提示框！");
-      }
+<head>
 
-      window.onload = function() {
-        var gif = document.getElementById("gif");
-        gif.addEventListener("click", showPopup);
-      };
-    </script>
-  </head>
-  <body>
-    <img id="gif" class="gif" src="../static/picture/pig.gif" alt="GIF" />
-  </body>
+    <title>html5添加音乐</title>
+    <meta charset="utf-8">
+</head>
+<style type="text/css">
+    audio {
+        display: none;
+    }
+</style>
+<body>
+<audio autoplay="autoplay" loop="loop" preload="auto" controls="controls"
+       src="../static/mp3/music.mp3">
+</audio>
+
+
+</body>
+
 </html>
