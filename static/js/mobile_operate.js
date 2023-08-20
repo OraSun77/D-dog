@@ -15,7 +15,7 @@ function get_information(can) {
     //获得对象
     var dataIndex = read_probability();
     //设置文字
-    ctx.font = "800 15px 微软雅黑";
+    ctx.font = "600 12px 微软雅黑";
     ctx.textBaseline = 'middle';
     ctx.textAlign = "center";
     ctx.fillStyle = dataIndex.color;
