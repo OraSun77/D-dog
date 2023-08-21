@@ -23,10 +23,12 @@ function checkCondition() {
 
 window.onload = function () {
     var gif = document.getElementById("coins_gif");
+    var gif2 = document.getElementById("coins_gif2");
     var image = document.querySelector(".music_picture");
     var audio = document.getElementById("audio");
     var isRotating = false;
     gif.addEventListener("click", showPopup.bind(null, chance));
+    gif2.addEventListener("click", showPopup.bind(null, chance));
     image.addEventListener("click", function () {
         if (!isRotating) {
             audio.play(); // 播放音乐

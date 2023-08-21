@@ -8,6 +8,26 @@
     cursor: pointer;
 }
 
+.inside_picture2 {
+    display: inline-block;
+    cursor: pointer;
+}
+
+@keyframes moveAndRotate {
+    0% {
+        right: 0;
+        transform: rotate(0deg);
+    }
+    50% {
+        right: 50%;
+        transform: rotate(-180deg);
+    }
+    100% {
+        right: 100%;
+        transform: rotate(-360deg);
+    }
+}
+
 #screen {
     position: fixed;
     top: 0;
@@ -70,15 +90,31 @@
     right: 0;
     bottom: 0;
     width: 20%;
+    /*animation: slide-right-to-left 1s linear infinite;*/
+    animation: moveAndRotate 1s linear infinite;
+}
+
+.coins2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    width: 20%;
     animation: slide-right-to-left 1s linear infinite;
 }
 
 @keyframes slide-right-to-left {
     0% {
-        right: 0;
+        left: 50%;
+    }
+    49% {
+        left: 0;
+    }
+    50% {
+        left: 100%;
     }
     100% {
-        right: 100%;
+        left: 50%;
     }
 }
 
@@ -105,10 +141,12 @@
     bottom: 0;
     width: 8%;
 }
+
 .admin_settings {
     opacity: 40%;
     cursor: pointer;
 }
+
 .music_picture {
     opacity: 100%;
     cursor: pointer;
