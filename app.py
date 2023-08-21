@@ -65,5 +65,10 @@ def purchase_and_return():
     return redirect(url_for('dx_present', next=request.url))
 
 
+@app.route('/birthday_card')
+def birthday_card():
+    return render_template('birthday.html')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
