@@ -113,7 +113,6 @@ venv/
 *.csv
 *.zip
 *.parquet
-*.json
 test_data/*
 hdfs_data/
 metastore_db/
