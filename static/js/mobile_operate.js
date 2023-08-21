@@ -123,12 +123,12 @@ function read_probability() {
 }
 
 function checkCondition() {
-    var json_awards = filter_json.information.chance
+    var json_awards = filter_json.information.chance - 10
     var new_chance = json_awards - 10
     // 条件判断
-    if (mark === 0) {
+    if (new_chance < 0) {
         alert("次数不足,剩余" + json_awards + "个金币");
-    } else if (mark === 1) {
+    } else if (new_chance >= 0) {
         alert("已消耗10金币，剩余" + new_chance + "个金币");
         window.location.href = "/mobile"; // 如果a等于1，则跳转链接
     }
