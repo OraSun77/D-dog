@@ -105,7 +105,10 @@
     bottom: 0;
     width: 8%;
 }
-
+.admin_settings {
+    opacity: 40%;
+    cursor: pointer;
+}
 .music_picture {
     opacity: 100%;
     cursor: pointer;

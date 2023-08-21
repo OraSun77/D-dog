@@ -50,7 +50,6 @@ def login():
 
 @app.route('/recharge', methods=['POST'])
 def recharge():
-    a = 1
     amount = request.form['recharge amount']
     utils.recharge_amount('config/probability.json', amount)
     json_data = utils.read_local_json('config/probability.json')['information']
