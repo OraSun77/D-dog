@@ -113,7 +113,7 @@ venv/
 *.csv
 *.zip
 *.parquet
-config/probability.json
+*.json
 test_data/*
 hdfs_data/
 metastore_db/

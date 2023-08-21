@@ -1,1 +1,47 @@
-{"information": {"name": "Sun", "chance": 40, "awards": {"加油呀": [0.57, "common"], "1元": [0.2, "rare"], "5元": [0.1, "epic"], "10元": [0.05, "legend"], "盲盒": [0.01, "rare"], "再来一次": [0.05, "epic"], "百灵鸟": [0.015, "best"], "神秘礼物": [0.005, "best"]}}, "color": {"common": "gray", "rare": "blue", "epic": "purple", "legend": "red", "best": "gold"}}
+{
+  "information": {
+    "name": "Sun",
+    "chance": 40,
+    "awards": {
+      "加油呀": [
+        0.57,
+        "common"
+      ],
+      "1元": [
+        0.2,
+        "rare"
+      ],
+      "5元": [
+        0.1,
+        "epic"
+      ],
+      "10元": [
+        0.05,
+        "legend"
+      ],
+      "盲盒": [
+        0.01,
+        "rare"
+      ],
+      "再来一次": [
+        0.05,
+        "epic"
+      ],
+      "百灵鸟": [
+        0.015,
+        "best"
+      ],
+      "神秘礼物": [
+        0.005,
+        "best"
+      ]
+    }
+  },
+  "color": {
+    "common": "gray",
+    "rare": "blue",
+    "epic": "purple",
+    "legend": "red",
+    "best": "gold"
+  }
+}
