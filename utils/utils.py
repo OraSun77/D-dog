@@ -9,6 +9,19 @@ import json
 
 
 def read_local_json(path_):
-    with open(path_, "r", encoding="utf-8") as f:
+    with open(path_, "r", encoding='utf-8') as f:
         json_data = json.load(f)
         return json_data
+
+
+def read_and_modify_json_chance(path_):
+    json_data = read_local_json(path_)
+    chance = json_data['information']['chance']
+    new_chance = chance - 10
+    if new_chance >= 0:
+        json_data['information']['chance'] = new_chance
+        with open(path_, 'w') as f:
+            json.dump(json_data, f)
+        return 1
+    else:
+        return 0

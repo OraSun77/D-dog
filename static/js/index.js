@@ -10,6 +10,17 @@ function showPopup(chance) {
     confirm("你当前有" + chance + "枚金币！");
 }
 
+function checkCondition() {
+    var new_chance = chance - 10
+    // 条件判断
+    if (new_chance < 0) {
+        alert("次数不足,剩余" + chance + "个金币");
+    } else if (new_chance >= 0) {
+        alert("已消耗10金币，剩余" + new_chance + "个金币");
+        window.location.href = "/mobile"; // 如果a等于1，则跳转链接
+    }
+}
+
 window.onload = function () {
     var gif = document.getElementById("coins_gif");
     var image = document.querySelector(".music_picture");

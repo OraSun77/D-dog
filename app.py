@@ -16,7 +16,8 @@ def dx_present():
 @app.route('/mobile')
 def my_html_mobile():
     json_data = utils.read_local_json('config/probability.json')
-    return render_template('mobile_scratch.html', combine_list=json_data)
+    mark = utils.read_and_modify_json_chance('config/probability.json')
+    return render_template('mobile_scratch.html', combine_list=json_data, mark=mark)
 
 
 @app.route('/')

@@ -43,7 +43,7 @@
     height: 55%; /* 设置盒子高度占满整个视口 */
 }
 
-.function_sets a button {
+.function_sets button {
     width: 200px;
     height: 50px;
     margin: 10px;
