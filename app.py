@@ -58,5 +58,12 @@ def recharge():
     return render_template('recharge.html', chance=chance, username=username, message=f'{amount}金币已入账！')
 
 
+@app.route('/purchase_and_return', methods=['post', 'GET'])
+def purchase_and_return():
+    purchase = int(request.args['purchase'])
+    utils.recharge_amount('config/probability.json', purchase)
+    return redirect(url_for('dx_present', next=request.url))
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

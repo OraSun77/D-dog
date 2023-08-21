@@ -25,11 +25,16 @@ function get_scratch_result() {
     }
     var result_message = ''
     Object.entries(new_dict).forEach(([key, value]) => {
-        str_ = key + ":" +  value + ",\n"
+        str_ = key + ":" + value + ",\n"
         result_message += str_
     });
     if (confirm("您获得了以下奖励\n" + result_message)) {
-        window.location.href = "/828";
+        if (str_.includes('再来一次')) {
+            var amount = new_dict['再来一次'] * 10
+            window.location.href = "/purchase_and_return?purchase=" + amount;
+        } else {
+            window.location.href = "/828";
+        }
     }
 }
 
