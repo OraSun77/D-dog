@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recharge</title>
+</head>
+<body>
+<h1>Recharge</h1>
+<p>账户名：{{ username }}</p>
+<p>账户余额：{{ chance }}金币</p>
+<form method="post" action="/recharge">
+    <label for="recharge">recharge amount:</label>
+    <input type="number" id="username" name="recharge amount">
+
+    <input type="submit" value="recharge">
+</form>
+
+<p>{{ message }}</p>
+</body>
+</html>

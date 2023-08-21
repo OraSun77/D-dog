@@ -22,3 +22,11 @@ def read_and_modify_json_chance(path_):
         json_data['information']['chance'] = new_chance
         with open(path_, 'w', encoding='gbk') as f:
             json.dump(json_data, f, ensure_ascii=False)
+
+
+def recharge_amount(path_, amount):
+    json_data = read_local_json(path_)
+    chance = json_data['information']['chance']
+    json_data['information']['chance'] = chance + int(amount)
+    with open(path_, 'w', encoding='gbk') as f:
+        json.dump(json_data, f, ensure_ascii=False)
