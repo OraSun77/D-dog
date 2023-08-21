@@ -1,25 +1,64 @@
 items_len = 20
-
+result_list = []
 for (var i = 1; i < items_len + 1; i++) {
     var str_ = '#can' + i
     var can = document.querySelector(str_)
-    get_information(can)
+    var data_choose = read_probability();
+    result_list.push(data_choose.name)
+    get_information(can, data_choose)
 }
 
-function get_information(can) {
+function get_scratch_result() {
+    var new_dict = {'现金': 0}
+    for (var i = 0; i < result_list.length; i++) {
+        if (result_list[i].includes("元")) {
+            var num = extractNumberBeforeYuan(result_list[i])
+            new_dict['现金'] += Number(num)
+        } else if (result_list[i] === "加油呀") {
+        } else {
+            if (!(result_list[i] in Object.keys(new_dict))) {
+                new_dict[result_list[i]] = 1
+            } else {
+                new_dict[result_list[i]] += 1
+            }
+        }
+    }
+    var result_message = ''
+    Object.entries(new_dict).forEach(([key, value]) => {
+        str_ = key + ":" +  value + ",\n"
+        result_message += str_
+    });
+    if (confirm("您获得了以下奖励\n" + result_message)) {
+        window.location.href = "/828";
+    }
+}
+
+function extractNumberBeforeYuan(str) {
+    // 使用正则表达式提取数字
+    var regex = /^(\d+(?:\.\d+)?)元/;
+    var match = str.match(regex);
+
+    if (match) {
+        // 匹配到数字，返回提取到的结果
+        return match[1];
+    } else {
+        // 未匹配到数字，返回空字符串或其他默认值
+        return str;
+    }
+}
+
+function get_information(can, data_choose) {
     can.width = 50;
     can.height = 25;
 
     //联系上下文
     var ctx = can.getContext("2d");
-    //获得对象
-    var dataIndex = read_probability();
     //设置文字
     ctx.font = "600 12px 微软雅黑";
     ctx.textBaseline = 'middle';
     ctx.textAlign = "center";
-    ctx.fillStyle = dataIndex.color;
-    ctx.fillText(dataIndex.name, can.width / 2, can.height / 2);
+    ctx.fillStyle = data_choose.color;
+    ctx.fillText(data_choose.name, can.width / 2, can.height / 2);
     //将背景转换为canvas特有的base64格式
     var dataUrl = can.toDataURL("image/png", 1);
     //将背景图片设置为canvas画布的背景
