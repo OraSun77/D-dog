@@ -28,6 +28,7 @@ function get_scratch_result() {
         str_ = key + ":" + value + ",\n"
         result_message += str_
     });
+    console.log(result_message)
     if (confirm("您获得了以下奖励\n" + result_message)) {
         if (str_.includes('再来一次')) {
             var amount = new_dict['再来一次'] * 10
