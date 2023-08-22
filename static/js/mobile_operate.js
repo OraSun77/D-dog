@@ -28,6 +28,8 @@ function get_scratch_result() {
         str_ = key + ":" + value + ",\n"
         result_message += str_
     });
+
+    write_in_json(new_dict)
     console.log(result_message)
     if (confirm("您获得了以下奖励\n" + result_message)) {
         if (str_.includes('再来一次')) {
@@ -37,6 +39,31 @@ function get_scratch_result() {
             window.location.href = "/828";
         }
     }
+}
+
+function write_in_json(data) {
+    var date_now = new Date().toISOString()
+    var result_json = {
+        'birthday scratch card': {
+        // 'hit dx': {
+            date: date_now,
+            value: data
+        }
+    }
+    fetch('/write_in_history', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(result_json)
+    })
+        .then(response => response.json())
+        .then(data => {
+            // 在这里处理后端返回的数据
+        })
+        .catch(error => {
+            // 处理错误
+        });
 }
 
 function extractNumberBeforeYuan(str) {

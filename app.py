@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, request, redirect, url_for
-from utils import utils
+from method import json_method, data_method
 
 app = Flask(__name__)
 
@@ -13,15 +13,15 @@ def main_page():
 
 @app.route('/828')
 def dx_present():
-    json_data = utils.read_local_json('config/probability.json')
+    json_data = json_method.read_local_json('config/probability.json')
     chance = json_data['information']['chance']
     return render_template('index.html', combine_list=chance)
 
 
 @app.route('/mobile')
 def my_html_mobile():
-    json_data = utils.read_local_json('config/probability.json')
-    utils.read_and_modify_json_chance('config/probability.json')
+    json_data = json_method.read_local_json('config/probability.json')
+    json_method.read_and_modify_json_chance('config/probability.json')
     return render_template('mobile_scratch.html', combine_list=json_data)
 
 
@@ -41,7 +41,7 @@ def login():
     password = request.form['password']
 
     if username == 'admin' and password == '123':
-        chance = utils.read_local_json('config/probability.json')['information']['chance']
+        chance = json_method.read_local_json('config/probability.json')['information']['chance']
         return render_template('recharge.html', chance=chance, username=username, message='')
         # return redirect(url_for('dx_present', next=request.url))
     else:
@@ -51,8 +51,8 @@ def login():
 @app.route('/recharge', methods=['POST'])
 def recharge():
     amount = request.form['recharge amount']
-    utils.recharge_amount('config/probability.json', amount)
-    json_data = utils.read_local_json('config/probability.json')['information']
+    json_method.recharge_amount('config/probability.json', amount)
+    json_data = json_method.read_local_json('config/probability.json')['information']
     chance = json_data['chance']
     username = json_data['name']
     return render_template('recharge.html', chance=chance, username=username, message=f'{amount}金币已入账！')
@@ -61,13 +61,30 @@ def recharge():
 @app.route('/purchase_and_return', methods=['post', 'GET'])
 def purchase_and_return():
     purchase = int(request.args['purchase'])
-    utils.recharge_amount('config/probability.json', purchase)
+    json_method.recharge_amount('config/probability.json', purchase)
     return redirect(url_for('dx_present', next=request.url))
 
 
 @app.route('/birthday_card')
 def birthday_card():
     return render_template('birthday.html')
+
+
+@app.route('/write_in_history', methods=['POST'])
+def write_in_history():
+    data = request.json
+    json_method.history_in_json(path_='config/history.json', data=data)
+    # 在这里处理接收到的数据
+    # 例如，你可以访问data['param1']和data['param2']
+    return '数据已接收'  # 返回一个响应给前端
+
+
+@app.route('/clear_history')
+def clean_the_history():
+    json_method.clear_history(path_='config/history.json')
+    # 在这里处理接收到的数据
+    # 例如，你可以访问data['param1']和data['param2']
+    return '数据已清理'
 
 
 if __name__ == '__main__':
