@@ -7,6 +7,8 @@
 # @Software: PyCharm
 import json
 
+from flask import jsonify
+
 
 def read_local_json(path_):
     with open(path_, "r", encoding='gbk') as f:
@@ -49,3 +51,10 @@ def clear_history(path_):
     json_data = {}
     with open(path_, 'w', encoding='gbk') as f:
         json.dump(json_data, f, ensure_ascii=False)
+
+
+def choose_history_json(path_):
+    json_data = read_local_json(path_)
+    response = jsonify(json_data)
+    response.headers["Content-Type"] = "application/json;charset=UTF-8"
+    return response

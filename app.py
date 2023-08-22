@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from method import json_method, data_method
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 
 @app.route('/')
@@ -16,6 +17,11 @@ def dx_present():
     json_data = json_method.read_local_json('config/probability.json')
     chance = json_data['information']['chance']
     return render_template('index.html', combine_list=chance)
+
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 
 @app.route('/mobile')
@@ -82,9 +88,12 @@ def write_in_history():
 @app.route('/clear_history')
 def clean_the_history():
     json_method.clear_history(path_='config/history.json')
-    # 在这里处理接收到的数据
-    # 例如，你可以访问data['param1']和data['param2']
     return '数据已清理'
+
+
+@app.route('/push_history')
+def push_history():
+    return json_method.choose_history_json(path_='config/history.json')
 
 
 if __name__ == '__main__':

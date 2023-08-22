@@ -1,39 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    #myImage {
-      width: 200px;
-      height: 200px;
-      cursor: pointer;
-    }
+    <title>弹窗示例</title>
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
 
-    .rotate {
-      animation: rotate 2s linear infinite;
-    }
-
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+        #popupContent {
+            background: #fff;
+            width: 300px;
+            height: 200px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <img id="myImage" src="../static/picture/ygg_music.jpg" alt="Image">
+<button id="popupButton">bottom</button>
 
-  <script>
-    var image = document.getElementById('myImage');
-    var isRotating = false;
+<div id="popup">
+    <div id="popupContent">
+        <h2>history</h2>
+        <div id="dataContainer"></div>
+        <button id="closeButton">关闭</button>
+    </div>
+</div>
+<a href="/828">
+    <button class="left-button" id="return_main">返回主页</button>
+</a>
+<script>
+    // 获取按钮和弹窗元素
+    var popupButton = document.getElementById('popupButton');
+    var popup = document.getElementById('popup');
+    var closeButton = document.getElementById('closeButton');
+    var dataContainer = document.getElementById('dataContainer');
 
-    image.addEventListener('click', function() {
-      if (isRotating) {
-        image.classList.remove('rotate');
-        isRotating = false;
-      } else {
-        image.classList.add('rotate');
-        isRotating = true;
-      }
+    // 点击按钮时显示弹窗
+    popupButton.addEventListener('click', function () {
+        // 这里可以发送请求向后端获取数据，并在弹窗中展示
+        // 假设后端返回以下数据
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/push_history', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var dataFromBackend = JSON.parse(xhr.responseText);
+                    var key_list = Object.keys(dataFromBackend)
+                    dataContainer.innerHTML = ""
+                    for (var i = 0; i < key_list.length; i++) {
+                        dataContainer.innerHTML += "<h1>" + key_list[i] + "</h1>"
+                        var data = dataFromBackend[key_list[i]]
+                        var data_keys = Object.keys(data)
+                        for (var j = 0; j < data_keys.length; j++) {
+                            var t = data_keys.length - j - 1
+                            dataContainer.innerHTML += "<p>" + data_keys[t] + "->" + JSON.stringify(data[data_keys[t]]) + "</p>";
+                        }
+
+                    }
+                    // 显示弹窗
+                    popup.style.display = 'block';
+                } else {
+                    console.error('请求失败', xhr.status);
+                }
+            }
+        };
+        xhr.send();
     });
-  </script>
+
+    // 点击关闭按钮时隐藏弹窗
+    closeButton.addEventListener('click', function () {
+        popup.style.display = 'none';
+    });
+</script>
 </body>
 </html>
