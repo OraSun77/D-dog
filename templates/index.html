@@ -24,10 +24,8 @@
             </a>
         </div>
         <div class="history">
-            <a href="/test">
-                <img class="admin_settings" src="../static/picture/history.png" alt="jpg" width="30"
-                     height="30"/>
-            </a>
+            <img id="popupButton" class="admin_settings" src="../static/picture/history.png" alt="jpg" width="30"
+                 height="30"/>
         </div>
         <div class="music_tab">
             <img id="music_picture" class="music_picture" src="../static/picture/ygg_music.jpg" alt="jpg" width="30"
@@ -42,6 +40,15 @@
         <a href="https://ys.mihoyo.com/">
             <button id="button4">Genshin</button>
         </a>
+    </div>
+    <div id="popup">
+        <div id="exit-button">
+            <span>&times;</span>
+        </div>
+        <div id="popupContent">
+            <h2>history</h2>
+            <div id="dataContainer"></div>
+        </div>
     </div>
     <div class="coins_tab">
         <div class="coins">

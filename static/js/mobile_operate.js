@@ -42,11 +42,11 @@ function get_scratch_result() {
 }
 
 function write_in_json(data) {
-    var date_now = new Date().toISOString()
+    var date_now = new Date()
     var result_json = {
         'birthday scratch card': {
         // 'hit dx': {
-            date: date_now,
+            date: date_now.toLocaleDateString() + " " + date_now.toLocaleTimeString(),
             value: data
         }
     }

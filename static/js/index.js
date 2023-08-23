@@ -27,6 +27,48 @@ window.onload = function () {
     var image = document.querySelector(".music_picture");
     var audio = document.getElementById("audio");
     var isRotating = false;
+    // 获取按钮和弹窗元素
+    var popupButton = document.getElementById('popupButton');
+    var popup = document.getElementById('popup');
+    var closeButton = document.getElementById('exit-button');
+    var dataContainer = document.getElementById('dataContainer');
+
+    // 点击按钮时显示弹窗
+    popupButton.addEventListener('click', function () {
+        // 这里可以发送请求向后端获取数据，并在弹窗中展示
+        // 假设后端返回以下数据
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/push_history', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var dataFromBackend = JSON.parse(xhr.responseText);
+                    var key_list = Object.keys(dataFromBackend)
+                    dataContainer.innerHTML = ""
+                    for (var i = 0; i < key_list.length; i++) {
+                        dataContainer.innerHTML += "<h3>" + key_list[i] + "</h3>"
+                        var data = dataFromBackend[key_list[i]]
+                        var data_keys = Object.keys(data)
+                        for (var j = 0; j < data_keys.length; j++) {
+                            var t = data_keys.length - j - 1
+                            dataContainer.innerHTML += "<p>" + data_keys[t] + "->" + JSON.stringify(data[data_keys[t]]) + "</p>";
+                        }
+
+                    }
+                    // 显示弹窗
+                    popup.style.display = 'block';
+                } else {
+                    console.error('请求失败', xhr.status);
+                }
+            }
+        };
+        xhr.send();
+    });
+
+    // 点击关闭按钮时隐藏弹窗
+    closeButton.addEventListener('click', function () {
+        popup.style.display = 'none';
+    });
     gif.addEventListener("click", showPopup.bind(null, chance));
     gif2.addEventListener("click", showPopup.bind(null, chance));
     image.addEventListener("click", function () {
