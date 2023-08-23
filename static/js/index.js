@@ -31,6 +31,7 @@ window.onload = function () {
     var popupButton = document.getElementById('popupButton');
     var popup = document.getElementById('popup');
     var closeButton = document.getElementById('exit-button');
+    var deleteButton = document.getElementById('delete_button');
     var dataContainer = document.getElementById('dataContainer');
 
     // 点击按钮时显示弹窗
@@ -38,23 +39,36 @@ window.onload = function () {
         // 这里可以发送请求向后端获取数据，并在弹窗中展示
         // 假设后端返回以下数据
         var xhr = new XMLHttpRequest();
+
         xhr.open('GET', '/push_history', true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     var dataFromBackend = JSON.parse(xhr.responseText);
                     var key_list = Object.keys(dataFromBackend)
-                    dataContainer.innerHTML = ""
+                    var html_combine = "<thead><tr><th>项目</th><th>时间</th><th>奖励</th><th>数量</th></tr></thead><tbody>"
                     for (var i = 0; i < key_list.length; i++) {
-                        dataContainer.innerHTML += "<h3>" + key_list[i] + "</h3>"
                         var data = dataFromBackend[key_list[i]]
                         var data_keys = Object.keys(data)
                         for (var j = 0; j < data_keys.length; j++) {
                             var t = data_keys.length - j - 1
-                            dataContainer.innerHTML += "<p>" + data_keys[t] + "->" + JSON.stringify(data[data_keys[t]]) + "</p>";
+                            var data_values = Object.keys(data[data_keys[t]])
+                            for (var k = 0; k < data_values.length; k++) {
+                                html_combine += "<tr><th>"
+                                if (k === 0) {
+                                    html_combine += key_list[i];
+                                }
+                                html_combine += "</th><th>"
+                                if (k === 0) {
+                                    html_combine += data_keys[t]
+                                }
+                                html_combine += "</th><th>" + data_values[k] + "</th><th>" + data[data_keys[t]][data_values[k]] + "</th>"
+                                html_combine += "</tr>"
+                            }
                         }
-
                     }
+                    html_combine += "</tbody>"
+                    dataContainer.innerHTML = html_combine
                     // 显示弹窗
                     popup.style.display = 'block';
                 } else {
@@ -69,6 +83,18 @@ window.onload = function () {
     closeButton.addEventListener('click', function () {
         popup.style.display = 'none';
     });
+    deleteButton.addEventListener('click', function () {
+        fetch("/clear_history")
+            .then(response => response.json())
+            .then(data => {
+                // 处理后端接口返回的数据
+                console.log(data);
+dataContainer.innerHTML = "<thead><tr><th>项目</th><th>时间</th><th>奖励</th><th>数量</th></tr></thead><tbody>"
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    })
     gif.addEventListener("click", showPopup.bind(null, chance));
     gif2.addEventListener("click", showPopup.bind(null, chance));
     image.addEventListener("click", function () {

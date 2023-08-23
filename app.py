@@ -88,7 +88,7 @@ def write_in_history():
 @app.route('/clear_history')
 def clean_the_history():
     json_method.clear_history(path_='config/history.json')
-    return '数据已清理'
+    return {'message': '数据已清理'}
 
 
 @app.route('/push_history')
