@@ -51,7 +51,7 @@ def login():
         return render_template('recharge.html', chance=chance, username=username, message='')
         # return redirect(url_for('dx_present', next=request.url))
     else:
-        return render_template('login.html', message='Invalid credentials')
+        return render_template('login.html', message='Please write in correct username and password! ')
 
 
 @app.route('/recharge', methods=['POST'])
