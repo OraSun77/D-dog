@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理员界面</title>
+    <style>
+        @font-face {
+            font-family: "CustomFont";
+            src: url(../static/font/handle.ttf);
+        }
 
+        body {
+            font-family: "CustomFont", sans-serif;
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 60px;
+            color: #0077fc;
+        }
+
+        .header {
+            top: 0;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .basic_information {
+            font-size: 20px;
+        }
+
+        .nothing {
+            height: 15%;
+            width: 97%;
+        }
+
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../static/picture/kuromi_mobile_background.png') center center / cover no-repeat;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .button_container {
+            padding: 100px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            justify-content: center;
+            align-items: center;
+            height: 50%;
+        }
+
+        .function_button {
+            height: 60%;
+            width: 80%;
+            padding: 10px;
+            text-align: center;
+            font-size: 35px;
+            font-family: "CustomFont", sans-serif;
+            border-radius: 75%;
+            background-image: linear-gradient(to right, #f6b928, #d000ff);
+
+        }
+
+        .information_detail {
+            position: absolute;
+            top: 30%;
+            left: 35%;
+            font-size: 50px;
+            width: 30%;
+        }
+
+        .pop_windows {
+            display: none;
+            position: fixed;
+            top: 26%;
+            left: 10%;
+            width: 80%;
+            height: 55%;
+            z-index: 999;
+            background-color: #65a0dd;
+            opacity: 0.9;
+        }
+
+        .information_detail_form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .information_detail_form div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px; /* 调整每个元素之间的间距 */
+        }
+
+        .information_detail_form label {
+            /* label 的样式属性 */
+        }
+
+        .information_detail_form input[type="text"] {
+            /* input 的样式属性 */
+        }
+
+        .information_detail_form input[type="submit"] {
+            /* submit 按钮的样式属性 */
+        }
+    </style>
+</head>
+<body>
+<div id="windows_of_coin_purchase" class="pop_windows" style="display: none;">
+    <div class="information_detail">
+        <form class="information_detail_form" method="post" action="/recharge">
+            <div>
+                <label for="recharge">recharge amount:</label>
+                <input type="number" id="username" name="recharge amount">
+            </div>
+            <div>
+                <input type="submit" value="recharge">
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="screen">
+    <div class="background"></div>
+    <div class="header">
+        <h1>Admin Settings</h1>
+    </div>
+    <div class="basic_information">
+        <p>账户名：{{ username }}</p>
+        <p>账户余额：{{ chance }}金币</p>
+    </div>
+    <div class="nothing"></div>
+    <div class="button_container">
+        <button id="coin_purchase" class="function_button">金币充值</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+    </div>
+</div>
+<script>
+    const coin_purchase = document.getElementById('coin_purchase')
+    const windows_of_coin_purchase = document.getElementById('windows_of_coin_purchase')
+    window.onload = function () {
+        coin_purchase.addEventListener('click', function () {
+            console.log(1)
+            windows_of_coin_purchase.style.display = 'block';
+        });
+    }
+
+</script>
+</body>
+</html>
