@@ -1,24 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <title>Recharge</title>#}
-{#</head>#}
-{#<body>#}
-{#<h1>Recharge</h1>#}
-{#<p>账户名：{{ username }}</p>#}
-{#<p>账户余额：{{ chance }}金币</p>#}
-{#<form method="post" action="/recharge">#}
-{#    <label for="recharge">recharge amount:</label>#}
-{#    <input type="number" id="username" name="recharge amount">#}
-{##}
-{#    <input type="submit" value="recharge">#}
-{#</form>#}
-{#<a href="/828">#}
-{#    <button>返回主页</button>#}
-{#</a>#}
-{#<p>{{ message }}</p>#}
-{#</body>#}
-{#</html>#}
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,45 +77,82 @@
 
         .information_detail {
             position: absolute;
-            top: 30%;
-            left: 35%;
-            font-size: 50px;
-            width: 30%;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 50%;
+        }
+
+        h2 {
+            color: #000000;
         }
 
         .pop_windows {
             display: none;
             position: fixed;
-            top: 26%;
-            left: 10%;
-            width: 80%;
-            height: 55%;
+            top: 35%;
+            left: 11%;
+            width: 69%;
+            height: 41%;
             z-index: 999;
-            background-color: #65a0dd;
+            border: 10px solid #0077fc;
+            border-radius: 10%;
+            background-color: #c2aaca;
             opacity: 0.9;
         }
 
         .information_detail_form {
             display: flex;
             flex-direction: column;
+
         }
 
         .information_detail_form div {
             display: flex;
             flex-direction: column;
-            margin-bottom: 10px; /* 调整每个元素之间的间距 */
+            margin-bottom: 53px;
+            padding: 46px;
         }
 
         .information_detail_form label {
-            /* label 的样式属性 */
+            font-size: 35px;
+            color: #00afff;
+        }
+
+        input {
+            height: 40%;
+            font-size: 50px;
         }
 
         .information_detail_form input[type="text"] {
-            /* input 的样式属性 */
+            height: 5%;
+            width: 5%;
         }
 
         .information_detail_form input[type="submit"] {
-            /* submit 按钮的样式属性 */
+            border-radius: 23%;
+            left: 38%;
+            position: relative;
+            background: #0077fc;
+            width: 24%;
+        }
+
+        #exit-button {
+            right: -16%;
+            top: -50.5%;
+            position: absolute;
+            height: 2%;
+            width: 2%;
+            border-radius: 50%;
+            background-color: #f00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #exit-button span {
+            color: #fff; /*红色"×"符号的颜色为白色*/
+            font-size: 85px; /*按钮中符号的字体大小*/
         }
     </style>
 </head>
@@ -144,13 +160,19 @@
 <div id="windows_of_coin_purchase" class="pop_windows" style="display: none;">
     <div class="information_detail">
         <form class="information_detail_form" method="post" action="/recharge">
-            <div>
-                <label for="recharge">recharge amount:</label>
-                <input type="number" id="username" name="recharge amount">
+            <div id="exit-button" class="exit-button">
+                <span>&times;</span>
             </div>
-            <div>
-                <input type="submit" value="recharge">
-            </div>
+            <h2>Please Input Your Admin Username And Password</h2>
+            <form>
+                <div>
+                    <label for="recharge">Recharge Amount:</label>
+                    <input type="number" id="username" name="recharge amount">
+                </div>
+                <div>
+                    <input type="submit" value="&duarr;">
+                </div>
+            </form>
         </form>
     </div>
 
@@ -183,10 +205,14 @@
 <script>
     const coin_purchase = document.getElementById('coin_purchase')
     const windows_of_coin_purchase = document.getElementById('windows_of_coin_purchase')
+    const closeButton = document.getElementById('exit-button')
     window.onload = function () {
         coin_purchase.addEventListener('click', function () {
             console.log(1)
             windows_of_coin_purchase.style.display = 'block';
+        });
+        closeButton.addEventListener('click', function () {
+            windows_of_coin_purchase.style.display = 'none';
         });
     }
 
