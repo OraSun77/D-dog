@@ -22,7 +22,6 @@ def login():
     if username == 'admin' and password == '123':
         chance = json_method.read_local_json('config/probability.json')['information']['chance']
         return render_template('admin/admin.html', chance=chance, username=username, message='')
-        # return redirect(url_for('dx_present', next=request.url))
     else:
         return render_template('admin/login.html', message='Please write in correct username and password! ')
 
@@ -48,4 +47,4 @@ def recharge():
 def purchase_and_return():
     purchase = int(request.args['purchase'])
     json_method.recharge_amount('config/probability.json', purchase)
-    return redirect(url_for('dx_present', next=request.url))
+    return redirect(url_for('index_api.dx_present', next=request.url))

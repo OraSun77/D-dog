@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .button {
+            background-color: gold;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button.disabled {
+            background-color: gray;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<button id="myButton" class="button" onclick="changeButton()">领取</button>
+
+<script>
+    var a = 0;
+
+    function changeButton() {
+        if (a === 0) {
+            document.getElementById("myButton").innerHTML = "已领取";
+            document.getElementById("myButton").classList.add("disabled");
+            a = 1;
+        }
+    }
+</script>
+
+</body>
+</html>

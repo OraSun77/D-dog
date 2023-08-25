@@ -46,7 +46,7 @@ window.onload = function () {
                 if (xhr.status === 200) {
                     var dataFromBackend = JSON.parse(xhr.responseText);
                     var key_list = Object.keys(dataFromBackend)
-                    var html_combine = "<thead><tr><th>项目</th><th>时间</th><th>奖励</th><th>数量</th></tr></thead><tbody>"
+                    var html_combine = "<thead><tr><th>项目</th><th>时间</th><th>奖励</th><th>数量</th><th>状态</th></tr></thead><tbody>"
                     for (var i = 0; i < key_list.length; i++) {
                         var data = dataFromBackend[key_list[i]]
                         var data_keys = Object.keys(data)
@@ -62,7 +62,13 @@ window.onload = function () {
                                 if (k === 0) {
                                     html_combine += data_keys[t]
                                 }
-                                html_combine += "</th><th>" + data_values[k] + "</th><th>" + data[data_keys[t]][data_values[k]] + "</th>"
+                                var combine_str = key_list[i] + "&" + data_keys[t] + "&" + data_values[k]
+                                html_combine += "</th><th>" + data_values[k] + "</th><th>" + data[data_keys[t]][data_values[k]]["amount"] + "</th><th>"
+                                if ((data_values[k] === "再来一次") || (data[data_keys[t]][data_values[k]]["status"] === 1)) {
+                                    html_combine += "<button id=\"" + combine_str + "\" class=\"clicked_button\">已领取</button>" + "</th>"
+                                } else {
+                                    html_combine += "<button id=\"" + combine_str + "\" class=\"unclick_button\">领取</button>" + "</th>"
+                                }
                                 html_combine += "</tr>"
                             }
                         }
@@ -77,6 +83,42 @@ window.onload = function () {
             }
         };
         xhr.send();
+        // 添加点击事件监听器到表格
+        dataContainer.addEventListener('click', event => {
+            // 判断点击的元素是否为按钮
+            if (event.target.classList.contains('unclick_button')) {
+                // 获取所在行的最后一个单元格
+                const lastCell = event.target.parentNode.lastElementChild;
+                // 判断点击的按钮是否在最后一列
+                if (lastCell === event.target.parentNode.lastElementChild) {
+                    // 获取被点击的按钮
+                    if (confirm("确认领取奖励吗？")) {
+                        const clickedButton = event.target;
+                        console.log('按钮被点击:', clickedButton.textContent);
+                        fetch('/receive_award', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({button_id: clickedButton.id})
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    console.log('值已成功传递给后端');
+                                    clickedButton.innerHTML = "已领取";
+                                    clickedButton.classList = "clicked_button";
+                                } else {
+                                    console.error('传递值时出现问题');
+                                }
+
+                            })
+                            .catch(error => {
+                                console.error('发生错误:', error);
+                            });
+                    }
+                }
+            }
+        });
     });
 
     // 点击关闭按钮时隐藏弹窗

@@ -37,3 +37,10 @@ def clean_the_history():
 @index_api.route('/push_history')
 def push_history():
     return json_method.choose_history_json(path_='config/history.json')
+
+
+@index_api.route('/receive_award', methods=['post'])
+def receive_award():
+    button_id = request.json['button_id']
+    json_method.receive_award_json(path_='config/history.json', button_id=button_id)
+    return "ok"

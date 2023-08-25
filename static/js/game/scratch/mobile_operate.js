@@ -23,9 +23,14 @@ function get_scratch_result() {
             }
         }
     }
+    Object.keys(new_dict).map(key => {
+        var old_value = new_dict[key]
+        new_dict[key] = {amount: old_value, status: 0}
+    })
+
     var result_message = ''
     Object.entries(new_dict).forEach(([key, value]) => {
-        str_ = key + ":" + value + ",\n"
+        str_ = key + ":" + value["amount"] + ",\n"
         result_message += str_
     });
 
@@ -33,7 +38,7 @@ function get_scratch_result() {
     console.log(result_message)
     if (confirm("您获得了以下奖励\n" + result_message)) {
         if (str_.includes('再来一次')) {
-            var amount = new_dict['再来一次'] * 10
+            var amount = new_dict['再来一次']["amount"] * 10
             window.location.href = "/purchase_and_return?purchase=" + amount;
         } else {
             window.location.href = "/828";
@@ -45,7 +50,7 @@ function write_in_json(data) {
     var date_now = new Date()
     var result_json = {
         'birthday scratch card': {
-        // 'hit dx': {
+            // 'hit dx': {
             date: date_now.toLocaleDateString() + " " + date_now.toLocaleTimeString(),
             value: data
         }

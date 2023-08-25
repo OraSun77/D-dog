@@ -58,3 +58,11 @@ def choose_history_json(path_):
     response = jsonify(json_data)
     response.headers["Content-Type"] = "application/json;charset=UTF-8"
     return response
+
+
+def receive_award_json(path_, button_id):
+    project, time_, award = button_id.split('&')
+    json_data = read_local_json(path_)
+    json_data[project][time_][award]["status"] = 1
+    with open(path_, 'w', encoding='gbk') as f:
+        json.dump(json_data, f, ensure_ascii=False)
