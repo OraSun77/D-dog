@@ -5,3 +5,6 @@
 # @Author  : Oran Wu
 # @File    : utils
 # @Software: PyCharm
+def add_route(source, add_list):
+    for _ in add_list:
+        source.register_blueprint(_)
