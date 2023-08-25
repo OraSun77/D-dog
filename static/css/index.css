@@ -36,7 +36,7 @@
     height: 100%;
     z-index: -1;
     /*background: url('https://pic.ntimg.cn/file/20201201/25556919_104441870000_2.jpg') no-repeat center center fixed;*/
-    background: url('../picture/kuromi_mobile_background.png') no-repeat center center fixed;
+    background: url('../picture/admin/kuromi_mobile_background.png') no-repeat center center fixed;
     background-size: cover;
     opacity: 0.5;
 }

@@ -21,15 +21,15 @@ def login():
 
     if username == 'admin' and password == '123':
         chance = json_method.read_local_json('config/probability.json')['information']['chance']
-        return render_template('recharge.html', chance=chance, username=username, message='')
+        return render_template('admin/admin.html', chance=chance, username=username, message='')
         # return redirect(url_for('dx_present', next=request.url))
     else:
-        return render_template('login.html', message='Please write in correct username and password! ')
+        return render_template('admin/login.html', message='Please write in correct username and password! ')
 
 
 @admin_api.route('/login')
 def home():
-    return render_template('login.html', message='')
+    return render_template('admin/login.html', message='')
 
 
 @admin_api.route('/recharge', methods=['POST'])
@@ -41,7 +41,7 @@ def recharge():
     json_data = json_method.read_local_json('config/probability.json')['information']
     chance = json_data['chance']
     username = json_data['name']
-    return render_template('recharge.html', chance=chance, username=username, message=f'{amount}金币已入账！')
+    return render_template('admin/admin.html', chance=chance, username=username, message=f'{amount}金币已入账！')
 
 
 @admin_api.route('/purchase_and_return', methods=['post', 'GET'])

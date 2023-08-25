@@ -16,9 +16,9 @@ scratch_api = Blueprint('scratch_api', __name__)
 def my_html_mobile():
     json_data = json_method.read_local_json('config/probability.json')
     json_method.read_and_modify_json_chance('config/probability.json')
-    return render_template('mobile_scratch.html', combine_list=json_data)
+    return render_template('game/scratch/mobile_scratch.html', combine_list=json_data)
 
 
 @scratch_api.route('/birthday_card')
 def birthday_card():
-    return render_template('birthday.html')
+    return render_template('game/scratch/birthday.html')

@@ -84,16 +84,18 @@ window.onload = function () {
         popup.style.display = 'none';
     });
     deleteButton.addEventListener('click', function () {
-        fetch("/clear_history")
-            .then(response => response.json())
-            .then(data => {
-                // 处理后端接口返回的数据
-                console.log(data);
-dataContainer.innerHTML = "<thead><tr><th>项目</th><th>时间</th><th>奖励</th><th>数量</th></tr></thead><tbody>"
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        if (confirm("确定删除历史记录吗？")) {
+            fetch("/clear_history")
+                .then(response => response.json())
+                .then(data => {
+                    // 处理后端接口返回的数据
+                    console.log(data);
+                    dataContainer.innerHTML = "<thead><tr><th>项目</th><th>时间</th><th>奖励</th><th>数量</th></tr></thead><tbody>"
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     })
     gif.addEventListener("click", showPopup.bind(null, chance));
     gif2.addEventListener("click", showPopup.bind(null, chance));

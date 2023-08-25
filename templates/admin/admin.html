@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理员界面</title>
+    <link rel="stylesheet" href="../../static/css/admin/admin.css">
+</head>
+<body>
+<div id="windows_of_coin_purchase" class="pop_windows" style="display: none;">
+    <div class="information_detail">
+        <form class="information_detail_form" method="post" action="/recharge">
+            <div id="exit-button" class="exit-button">
+                <span>&times;</span>
+            </div>
+            <h2>Please Input Your recharge amount</h2>
+            <form>
+                <div>
+                    <label for="recharge">Recharge Amount:</label>
+                    <input type="number" id="recharge" name="recharge amount">
+                </div>
+                <div>
+                    <input type="submit" value="&duarr;">
+                </div>
+            </form>
+        </form>
+    </div>
+
+</div>
+<div class="screen">
+    <div class="background"></div>
+    <div class="header">
+        <h1>Admin Settings</h1>
+    </div>
+    <div class="basic_information">
+        <p>账户名：{{ username }}</p>
+        <p>账户余额：{{ chance }}金币</p>
+    </div>
+    <div class="nothing"></div>
+    <div class="button_container">
+        <button id="coin_purchase" class="function_button">金币充值</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+        <button class="function_button">loading...</button>
+    </div>
+    <div id="return_main_page">
+        <div id="return-button" class="return-button">
+            <span>&larr;</span>
+        </div>
+    </div>
+</div>
+<script src="../../static/js/admin/admin.js"></script>
+</body>
+</html>
