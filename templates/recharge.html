@@ -139,6 +139,10 @@
             text-align: center;
         }
 
+        #return_main_page {
+            height: 10%;
+        }
+
         #exit-button {
             right: -16%;
             top: -50.5%;
@@ -155,6 +159,24 @@
         #exit-button span {
             color: #fff; /*红色"×"符号的颜色为白色*/
             font-size: 85px; /*按钮中符号的字体大小*/
+        }
+
+        #return-button {
+            left: 2%;
+            top: 4%;
+            position: relative;
+            height: 47%;
+            width: 9%;
+            border-radius: 27%;
+            background-color: #33e30f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #return-button span {
+            color: #fff; /*红色"×"符号的颜色为白色*/
+            font-size: 60px; /*按钮中符号的字体大小*/
         }
     </style>
 </head>
@@ -203,11 +225,17 @@
         <button class="function_button">loading...</button>
         <button class="function_button">loading...</button>
     </div>
+    <div id="return_main_page">
+        <div id="return-button" class="return-button">
+            <span>&larr;</span>
+        </div>
+    </div>
 </div>
 <script>
     const coin_purchase = document.getElementById('coin_purchase')
     const windows_of_coin_purchase = document.getElementById('windows_of_coin_purchase')
     const closeButton = document.getElementById('exit-button')
+    const returnButton = document.getElementById('return-button')
     window.onload = function () {
         coin_purchase.addEventListener('click', function () {
             console.log(1)
@@ -216,6 +244,9 @@
         closeButton.addEventListener('click', function () {
             windows_of_coin_purchase.style.display = 'none';
         });
+        returnButton.addEventListener('click',function (){
+            window.location.href = "/828"
+        })
     }
 
 </script>
