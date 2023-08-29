@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .button {
-            background-color: gold;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
+  <title>倒计时器</title>
+  <script>
+    var interval;
+    var startTime;
+    var selectedNumber;
 
-        .button.disabled {
-            background-color: gray;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: not-allowed;
+    function startTimer() {
+      var timerDisplay = document.getElementById("timer");
+      var confirmButton = document.getElementById("confirm");
+
+      // 随机选择一个数字并显示
+      selectedNumber = Math.floor(Math.random() * 20) + 1;
+      document.getElementById("selectedNumber").innerText = selectedNumber;
+
+      // 设置倒计时器计时间隔为10毫秒
+      var countdown = 20000; // 20秒
+      startTime = new Date().getTime();
+      interval = setInterval(function() {
+        var elapsedTime = new Date().getTime() - startTime;
+        var remainingTime = countdown - elapsedTime;
+
+        // 显示剩余时间
+        timerDisplay.innerText = (remainingTime / 1000).toFixed(3);
+
+        if (remainingTime <= 0) {
+          // 时间到，停止计时器
+          clearInterval(interval);
+          timerDisplay.innerText = "0.00";
+          confirmButton.disabled = true;
         }
-    </style>
+      }, 10);
+    }
+
+    function pauseTimer() {
+      clearInterval(interval);
+
+      var timerDisplay = document.getElementById("timer");
+      var confirmButton = document.getElementById("confirm");
+
+      // 计算绝对差值并显示
+      var diff = Math.abs(parseFloat(timerDisplay.innerText) - selectedNumber);
+      document.getElementById("difference").innerText = diff.toFixed(3);
+
+      confirmButton.disabled = true;
+      timerDisplay.disabled = true;
+    }
+  </script>
 </head>
 <body>
+  <h1>倒计时器</h1>
 
-<button id="myButton" class="button" onclick="changeButton()">领取</button>
+  <p>随机选择的数字：<span id="selectedNumber"></span></p>
+  <p>倒计时时间（秒）：<span id="timer">20.000</span></p>
 
-<script>
-    var a = 0;
+  <button onclick="startTimer()">开始</button>
+  <button id="confirm" onclick="pauseTimer()">确认</button>
 
-    function changeButton() {
-        if (a === 0) {
-            document.getElementById("myButton").innerHTML = "已领取";
-            document.getElementById("myButton").classList.add("disabled");
-            a = 1;
-        }
-    }
-</script>
-
+  <p>数值与选中数值的绝对差值：<span id="difference"></span></p>
 </body>
 </html>

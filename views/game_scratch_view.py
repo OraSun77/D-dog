@@ -12,7 +12,7 @@ from method import json_method
 scratch_api = Blueprint('scratch_api', __name__)
 
 
-@scratch_api.route('/mobile')
+@scratch_api.route('/scratch')
 def my_html_mobile():
     json_data = json_method.read_local_json('config/probability.json')
     json_method.read_and_modify_json_chance('config/probability.json')

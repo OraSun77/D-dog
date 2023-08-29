@@ -207,6 +207,6 @@ function checkCondition() {
         alert("次数不足,剩余" + json_awards + "个金币");
     } else if (new_chance >= 0) {
         alert("已消耗10金币，剩余" + new_chance + "个金币");
-        window.location.href = "/mobile"; // 如果a等于1，则跳转链接
+        window.location.href = "/scratch"; // 如果a等于1，则跳转链接
     }
 }
