@@ -2,62 +2,44 @@
 <html lang="zh-cn">
 <head>
     <title>倒计时器</title>
-    <script>
-        var interval;
-        var startTime;
-        var selectedNumber;
-
-        function startTimer() {
-            var timerDisplay = document.getElementById("timer");
-            var confirmButton = document.getElementById("confirm");
-
-            // 随机选择一个数字并显示
-            selectedNumber = Math.floor(Math.random() * 20) + 1;
-            document.getElementById("selectedNumber").innerText = selectedNumber;
-
-            // 设置倒计时器计时间隔为10毫秒
-            var countdown = 20000; // 20秒
-            startTime = new Date().getTime();
-            interval = setInterval(function () {
-                var elapsedTime = new Date().getTime() - startTime;
-                var remainingTime = countdown - elapsedTime;
-
-                // 显示剩余时间
-                timerDisplay.innerText = (remainingTime / 1000).toFixed(3);
-
-                if (remainingTime <= 0) {
-                    // 时间到，停止计时器
-                    clearInterval(interval);
-                    timerDisplay.innerText = "0.00";
-                    confirmButton.disabled = true;
-                }
-            }, 10);
-        }
-
-        function pauseTimer() {
-            clearInterval(interval);
-
-            var timerDisplay = document.getElementById("timer");
-            var confirmButton = document.getElementById("confirm");
-
-            // 计算绝对差值并显示
-            var diff = Math.abs(parseFloat(timerDisplay.innerText) - selectedNumber);
-            document.getElementById("difference").innerText = diff.toFixed(3);
-
-            confirmButton.disabled = true;
-            timerDisplay.disabled = true;
-        }
-    </script>
+    <link rel="stylesheet" href="../../../static/css/game/transcending/main_transcending.css">
+    <script src="../../../static/js/game/transcending/main_transcending.js"></script>
 </head>
 <body>
-<h1>倒计时器</h1>
-
-<p>随机选择的数字：<span id="selectedNumber"></span></p>
-<p>倒计时时间（秒）：<span id="timer">20.000</span></p>
-
-<button onclick="startTimer()">开始</button>
-<button id="confirm" onclick="pauseTimer()">确认</button>
-
-<p>数值与选中数值的绝对差值：<span id="difference"></span></p>
+<div id="screen">
+    <div id="title">抢票手速检测机</div>
+    <div id="basic_information">
+        <p id="basic_ticket">热门程度：出名</p>
+        <p id="basic_person">抢票人数估计：10000</p>
+        <p id="basic_ticket">票数预估：400</p>
+    </div>
+    <div class="nothing"></div>
+    <div class="operate_box">
+        <div class="information_box">
+            <p>准备！</p>
+            <p>当前时间：<span id="timer">00:00:00</span></p>
+            <p>开票时间：<span id="selectedNumber"></span></p>
+            <p id="pad_of_box"></p>
+            <button class="confirm_button" id="confirm">等待开票</button>
+        </div>
+    </div>
+    <div id="result_sheet" class="result_sheet">
+        <table id="resultTable">
+            <thead>
+            <tr>
+                <th>名次</th>
+                <th>获取时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="return_main_page">
+        <div id="return-button" class="return-button">
+            <span>&larr;</span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
