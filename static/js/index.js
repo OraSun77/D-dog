@@ -10,6 +10,23 @@ function showPopup(chance) {
     confirm("你当前有" + chance + "枚金币！");
 }
 
+function choose_level() {
+    document.getElementById("transcending_popup").style.display = "block";
+}
+
+function selectLevel(button, number) {
+    if (confirm("您所选的等级为 " + button.innerHTML)) {
+        var new_chance = chance - 10
+        // 条件判断
+        if (new_chance < 0) {
+            alert("次数不足,剩余" + chance + "个金币");
+        } else if (new_chance >= 0) {
+            alert("已消耗10金币，剩余" + new_chance + "个金币");
+            window.location.href = '/choose_level?level=' + number; // 如果a等于1，则跳转链接
+        }
+    }
+}
+
 function checkCondition(path_) {
     var new_chance = chance - 10
     // 条件判断
@@ -30,8 +47,10 @@ window.onload = function () {
     // 获取按钮和弹窗元素
     var popupButton = document.getElementById('popupButton');
     var popup = document.getElementById('popup');
+    var transcending_popup = document.getElementById('transcending_popup');
     var closeButton = document.getElementById('exit-button');
     var deleteButton = document.getElementById('delete_button');
+    var tran_closeButton = document.getElementById('tran_exit_button');
     var dataContainer = document.getElementById('dataContainer');
 
     // 点击按钮时显示弹窗
@@ -124,6 +143,9 @@ window.onload = function () {
     // 点击关闭按钮时隐藏弹窗
     closeButton.addEventListener('click', function () {
         popup.style.display = 'none';
+    });
+    tran_closeButton.addEventListener('click', function () {
+        transcending_popup.style.display = 'none';
     });
     deleteButton.addEventListener('click', function () {
         if (confirm("确定删除历史记录吗？")) {

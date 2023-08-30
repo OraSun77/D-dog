@@ -3,12 +3,14 @@ var startTime;
 var selectedNumber;
 
 window.onload = function () {
+
+    var time_range = [1, 10]
     var person_num = 10000;
     var ticket_num = 500;
     var timerDisplay = document.getElementById("timer");
     var aimButton = document.getElementById("selectedNumber");
     var confirmButton = document.getElementById("confirm");
-    var aim_time = new Date(new Date().getTime() + (Math.floor(Math.random() * (5 - 1)) + 1) * 1000)
+    var aim_time = new Date(new Date().getTime() + (Math.floor(Math.random() * (time_range[1] - time_range[0])) + time_range[0]) * 1000)
     aimButton.innerText = get_time(aim_time)
     var mask = 0
     var table = document.getElementById('resultTable');

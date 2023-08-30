@@ -1,38 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>按钮颜色渐变循环</title>
-  <style>
-    #colorButton {
-      width: 200px;
-      height: 50px;
-      background: linear-gradient(to right, purple, yellow);
-      animation: colorAnimation 5s infinite;
-    }
-
-    @keyframes colorAnimation {
-      0% {
-        background-position: left;
-      }
-      100% {
-        background-position: right;
-      }
-    }
-  </style>
+  <title>按钮弹出框示例</title>
 </head>
 <body>
-  <button id="colorButton">按钮</button>
+  <button onclick="showPopup()">点击打开弹出框</button>
+
+  <!-- 弹出框 -->
+  <div id="popup" style="display: none;">
+    <button onclick="selectNumber(1)">1</button>
+    <button onclick="selectNumber(2)">2</button>
+    <button onclick="selectNumber(3)">3</button>
+    <button onclick="selectNumber(4)">4</button>
+  </div>
 
   <script>
-    var button = document.getElementById("colorButton");
-
-    function restartAnimation() {
-      button.style.animation = "none";
-      void button.offsetWidth; // 重新计算样式，触发 reflow
-      button.style.animation = null;
+    function showPopup() {
+      document.getElementById("popup").style.display = "block";
     }
 
-    button.addEventListener("animationiteration", restartAnimation);
+    function selectNumber(number) {
+      // 模拟跳转到下一个页面，并将选择的数字作为参数传递
+      window.location.href = "index.html?number=" + number;
+    }
   </script>
 </body>
 </html>

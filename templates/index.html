@@ -28,7 +28,8 @@
                  height="30"/>
         </div>
         <div class="music_tab">
-            <img id="music_picture" class="music_picture" src="../static/picture/admin/ygg_music.jpg" alt="jpg" width="30"
+            <img id="music_picture" class="music_picture" src="../static/picture/admin/ygg_music.jpg" alt="jpg"
+                 width="30"
                  height="30"/>
         </div>
     </div>
@@ -40,7 +41,7 @@
         <a href="https://ys.mihoyo.com/">
             <button id="button4">Genshin</button>
         </a>
-        <button id="button5" onclick="checkCondition('/transcending')">8288828</button>
+        <button id="button5" onclick="choose_level()">8288828</button>
     </div>
     <div id="popup">
         <div id="delete_button" class="exit-button">
@@ -62,6 +63,18 @@
         <div class="coins2">
             <img id="coins_gif2" class="inside_picture2" src="../static/picture/admin/pig.gif" alt="git" width="100"
                  height="100"/>
+        </div>
+    </div>
+    <div id="transcending_popup" style="display: none;">
+        <div id="tran_exit_button" class="exit-button">
+            <span>&times;</span>
+        </div>
+        <div class="button_list">
+            <button onclick="selectLevel(this,1)">平凡</button>
+            <button onclick="selectLevel(this,2)">流行</button>
+            <button onclick="selectLevel(this,3)">热门</button>
+            <button onclick="selectLevel(this,4)">风靡</button>
+            <button onclick="selectLevel(this,5)">狂热</button>
         </div>
     </div>
 </div>

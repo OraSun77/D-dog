@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <title>倒计时器</title>
+    <title>抢票手速检测机</title>
     <link rel="stylesheet" href="../../../static/css/game/transcending/main_transcending.css">
     <script src="../../../static/js/game/transcending/main_transcending.js"></script>
 </head>
@@ -9,9 +9,9 @@
 <div id="screen">
     <div id="title">抢票手速检测机</div>
     <div id="basic_information">
-        <p id="basic_ticket">热门程度：出名</p>
-        <p id="basic_person">抢票人数估计：10000</p>
-        <p id="basic_ticket">票数预估：400</p>
+        <p id="basic_ticket">热门程度：{{ name }}</p>
+        <p id="basic_person">抢票人数估计：{{ person_num }}</p>
+        <p id="basic_ticket">票数预估：{{ ticket_num }}</p>
     </div>
     <div class="nothing"></div>
     <div class="operate_box">

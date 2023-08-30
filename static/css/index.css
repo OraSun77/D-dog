@@ -202,7 +202,7 @@
     overflow: auto;
 }
 
-#exit-button {
+.exit-button {
     right: 4%;
     top: 9%;
     position: absolute;
@@ -216,7 +216,7 @@
     z-index: 1;
 }
 
-#delete_button {
+.delete_button {
     right: 12%;
     top: 9%;
     position: absolute;
@@ -230,12 +230,12 @@
     z-index: 1;
 }
 
-#exit-button span {
+.exit-button span {
     color: #fff; /*红色"×"符号的颜色为白色*/
     font-size: 20px; /*按钮中符号的字体大小*/
 }
 
-#delete_button span {
+.delete_button span {
     color: #fff; /*红色"×"符号的颜色为白色*/
     font-size: 20px; /*按钮中符号的字体大小*/
 }
@@ -248,8 +248,8 @@
     font-family: Arial, sans-serif;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    left:0%;
-    top:0%;
+    left: 0%;
+    top: 0%;
 }
 
 th, td {
@@ -268,4 +268,39 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #ff0028;
+}
+
+#transcending_popup {
+    background-color: #c87abc;
+    display: none;
+    position: fixed;
+    top: 14%;
+    left: 8%;
+    width: 85%;
+    height: 70%;
+    z-index: 900;
+}
+
+.button_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.button_list button {
+    width: 200px;
+    height: 62px;
+    margin-bottom: 15px;
+    border-image: linear-gradient(to right, #fa06c0, #ffb300);
+    border-image-slice: 1;
+    font-size: 23px;
+    background-color: #eaa80b;
+    color: #c42a4e;
+    font-weight: bold;
+}
+#tran_exit_button{
+    right:-1%;
+    top:-1%;
 }
