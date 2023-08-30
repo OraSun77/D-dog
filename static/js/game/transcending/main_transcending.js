@@ -1,12 +1,6 @@
 var interval;
-var startTime;
-var selectedNumber;
-
 window.onload = function () {
-
-    var time_range = [1, 10]
-    var person_num = 10000;
-    var ticket_num = 500;
+    var time_range = [5, 10]
     var timerDisplay = document.getElementById("timer");
     var aimButton = document.getElementById("selectedNumber");
     var confirmButton = document.getElementById("confirm");
@@ -42,7 +36,7 @@ window.onload = function () {
             } else {
                 confirm("票票卖光了，下次继续努力！")
             }
-            var display_list = [1, 2, 3, 500, rank_ - 1, rank_, rank_ + 1].sort(function (a, b) {
+            var display_list = [1, 2, 3, ticket_num, rank_ - 1, rank_, rank_ + 1].sort(function (a, b) {
                 return a - b;
             });
             var display_form = []
