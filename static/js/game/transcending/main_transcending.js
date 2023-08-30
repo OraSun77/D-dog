@@ -33,6 +33,7 @@ window.onload = function () {
             var rank_ = findInsertPosition(array, time_diff) + 1
             if (rank_ <= ticket_num) {
                 confirm("恭喜你，抢到啦！")
+                write_in_json()
             } else {
                 confirm("票票卖光了，下次继续努力！")
             }
@@ -87,6 +88,31 @@ function make_array(person_num) {
         return a - b;
     });
     return array
+}
+
+function write_in_json() {
+    var date_now = new Date()
+    var result_json = {
+        'ticket grabbing simulator': {
+            // 'hit dx': {
+            date: date_now.toLocaleDateString() + " " + date_now.toLocaleTimeString(),
+            value: {[level_name]: {amount: 1, status: 0}}
+        }
+    }
+    fetch('/write_in_history', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(result_json)
+    })
+        .then(response => response.json())
+        .then(data => {
+            // 在这里处理后端返回的数据
+        })
+        .catch(error => {
+            // 处理错误
+        });
 }
 
 function get_time(currentTime = new Date()) {

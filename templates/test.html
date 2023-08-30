@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>按钮弹出框示例</title>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
-  <button onclick="showPopup()">点击打开弹出框</button>
+<button>动画</button>
+<div class="box" style="left: 0px"></div>
 
-  <!-- 弹出框 -->
-  <div id="popup" style="display: none;">
-    <button onclick="selectNumber(1)">1</button>
-    <button onclick="selectNumber(2)">2</button>
-    <button onclick="selectNumber(3)">3</button>
-    <button onclick="selectNumber(4)">4</button>
-  </div>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    var div = document.getElementsByTagName("div")[0];
 
-  <script>
-    function showPopup() {
-      document.getElementById("popup").style.display = "block";
-    }
+    //1、闪动
+    //    btn.onclick = function () {
+    //        div.style.left = "500px";
+    //    }
 
-    function selectNumber(number) {
-      // 模拟跳转到下一个页面，并将选择的数字作为参数传递
-      window.location.href = "index.html?number=" + number;
-    }
-  </script>
+    //2、匀速运动
+    btn.onclick = function () {
+        //定时器，每隔一定的时间向右走一些
+        setInterval(function () {
+            console.log(parseInt(div.style.left));
+            //动画原理： 盒子未来的位置 = 盒子现在的位置 + 步长；
+            //方法1：用offsetLeft获取值，用style.left赋值。
+            div.style.left = div.offsetLeft + 100 + 'px';
+
+            // 方法2：必须一开始就在DOM节点上添加 style="left: 0px;"属性，才能用方法2。否则， div.style.left 的值为 NaN
+            // div.style.left = parseInt(div.style.left)+100+"px";  //方法2：
+        }, 500);
+    };
+</script>
 </body>
 </html>
