@@ -137,3 +137,5 @@ slice_files
 test_data
 qrcode_img.py
 qrcode.png
+test_data/
+docker-compose.yml
