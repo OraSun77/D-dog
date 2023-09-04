@@ -22,6 +22,7 @@ def choose_level():
         4: {'name': '风靡', 'person_num': 25000, 'ticket_num': 800},
         5: {'name': '狂热', 'person_num': 50000, 'ticket_num': 1250},
     }
+    json_method.read_and_modify_json_chance('config/probability.json')
     return render_template('game/transcending time/transcending_time.html',
                            name=map_[level]['name'],
                            person_num=map_[level]['person_num'],

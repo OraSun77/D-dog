@@ -1,2 +1,4 @@
 docker build -t testflask:1.0.0 .
 docker run -d -p 80:80 -v /D-dog:/D-dog/ --name=env --privileged=true testflask:1.0.0
+
+pbi link <iframe title="dx" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMzFhOWEwZmEtZGRlZC00YjdmLWJlNjgtMGRlZmYzODJhMGY0IiwidCI6IjY5YjZmNGFhLTkwYTAtNDk5NC04Njc3LTg4MjYwZDE5NzhkYSIsImMiOjEwfQ%3D%3D&embedImagePlaceholder=true&pageName=ReportSection2fec16444067cc08d0db" frameborder="0" allowFullScreen="true"></iframe>

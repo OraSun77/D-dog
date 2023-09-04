@@ -139,3 +139,4 @@ qrcode_img.py
 qrcode.png
 test_data/
 docker-compose.yml
+docker-compose-backup.yml

@@ -10,5 +10,6 @@ from .game_scratch_view import scratch_api
 from .index_view import index_api
 from .test_view import test_api
 from .game_transcending_time_view import transcending_api
+from .menstruation_view import menstruation_api
 
-route_list = [admin_api, scratch_api, index_api, test_api, transcending_api]
+route_list = [admin_api, scratch_api, index_api, test_api, transcending_api, menstruation_api]
