@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+#  mysql:
+#    image: mysql:5.7
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: OraSun
+#      # So you don't have to use root, but you can if you like
+#      MYSQL_USER: ora
+#      # You can use whatever password you like
+#      MYSQL_PASSWORD: Ora8023Sun
+#      # Password for root access
+#      MYSQL_ROOT_PASSWORD: Ora8023Sun
+#    ports:
+#      - '3310:3306'
+#    command: --default-authentication-plugin=mysql_native_password
+#      # <Port exposed> : < MySQL Port running inside container>
+#    volumes:
+#      - "C:/Users/24427/work-test/dx/Dproject/test_data/mysql:/var/lib/mysql"
+  sqlserver-2019:
+    restart: always
+    #容器名称
+    container_name: mssql
+    #镜像名称
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    #端口映射
+    ports:
+      - '14333:1433'
+    #挂载
+    volumes:
+      - "/test_data/mssql:/var/lib/mysql"
+    #环境变量
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Ora8023Sun #自己设置密码
