@@ -7,15 +7,15 @@
 # @Software: PyCharm
 from flask import Blueprint, render_template
 
-from method import json_method
+from apps.api.method import json_method
 
 scratch_api = Blueprint('scratch_api', __name__)
 
 
 @scratch_api.route('/scratch')
 def my_html_mobile():
-    json_data = json_method.read_local_json('config/probability.json')
-    json_method.read_and_modify_json_chance('config/probability.json')
+    json_data = json_method.read_local_json('records/probability.json')
+    json_method.read_and_modify_json_chance('records/probability.json')
     return render_template('game/scratch/mobile_scratch.html', combine_list=json_data)
 
 

@@ -5,9 +5,7 @@
 # @Author  : Oran Wu
 # @File    : menstruation
 # @Software: PyCharm
-from flask import Blueprint, render_template, request, redirect, url_for
-
-from method import json_method
+from flask import Blueprint, render_template
 
 menstruation_api = Blueprint('menstruation_api', __name__)
 

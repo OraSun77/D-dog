@@ -8,6 +8,7 @@
 from .admin_view import admin_api
 from .game_scratch_view import scratch_api
 from .index_view import index_api
+from . import hook_view
 from .test_view import test_api
 from .game_transcending_time_view import transcending_api
 from .menstruation_view import menstruation_api

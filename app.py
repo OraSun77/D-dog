@@ -1,12 +1,11 @@
-import os
-
 from flask import Flask
-from views import route_list
+from apps.api.views import route_list
+from middlewares.DataBase.model import add_db
 from utils.utils import *
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
-
+add_db(source=app)
 add_route(source=app, add_list=route_list)
 
 

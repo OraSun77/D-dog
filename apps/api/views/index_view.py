@@ -7,14 +7,14 @@
 # @Software: PyCharm
 from flask import Blueprint, render_template, request
 
-from method import json_method
+from apps.api.method import json_method
 
 index_api = Blueprint('index_api', __name__)
 
 
 @index_api.route('/828')
 def dx_present():
-    json_data = json_method.read_local_json('config/probability.json')
+    json_data = json_method.read_local_json('records/probability.json')
     chance = json_data['information']['chance']
     return render_template('index.html', combine_list=chance)
 
@@ -22,7 +22,7 @@ def dx_present():
 @index_api.route('/write_in_history', methods=['POST'])
 def write_in_history():
     data = request.json
-    json_method.history_in_json(path_='config/history.json', data=data)
+    json_method.history_in_json(path_='records/history.json', data=data)
     # 在这里处理接收到的数据
     # 例如，你可以访问data['param1']和data['param2']
     return '数据已接收'  # 返回一个响应给前端
@@ -30,17 +30,17 @@ def write_in_history():
 
 @index_api.route('/clear_history')
 def clean_the_history():
-    json_method.clear_history(path_='config/history.json')
+    json_method.clear_history(path_='records/history.json')
     return {'message': '数据已清理'}
 
 
 @index_api.route('/push_history')
 def push_history():
-    return json_method.choose_history_json(path_='config/history.json')
+    return json_method.choose_history_json(path_='records/history.json')
 
 
 @index_api.route('/receive_award', methods=['post'])
 def receive_award():
     button_id = request.json['button_id']
-    json_method.receive_award_json(path_='config/history.json', button_id=button_id)
+    json_method.receive_award_json(path_='records/history.json', button_id=button_id)
     return "ok"

@@ -5,9 +5,9 @@
 # @Author  : Oran Wu
 # @File    : game_transcending_time_view
 # @Software: PyCharm
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request
 
-from method import json_method
+from apps.api.method import json_method
 
 transcending_api = Blueprint('transcending_api', __name__)
 
